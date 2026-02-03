@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YENIXA 2026</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+
+    <!-- Font Preload -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Oxanium:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <!-- Add this right after the leapFlash div -->
+    <div id="leapFlash" class="leap-flash"></div>
+    <!-- Add this new div for black background -->
+    <div id="blackOverlay" class="black-overlay"></div>
+    <!-- Video Background -->
+    <div class="fixed-bg">
+        <video autoplay muted loop playsinline class="bg-video">
+            <source src="../assets/videos/bg_video.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="bg-overlay"></div>
+    </div>
+
+    <section class="landing">
+        <div class="logo-container">
+            <div class="logo logo-1">
+                <img src="../assets/yenepoya_logo.webp" class="logo-image" alt="Yenepoya Logo">
+            </div>
+            <div class="logo-2-container">
+                <img src="../assets/rotate.webp" class="rotating-bg" alt="Rotating Background">
+                <div class="logo logo-2">
+                    <img src="../assets/Yenixa logo.webp" class="logo-image" alt="YENIXA Logo">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="content">
+        <div class="sticky-clock-wrapper">
+            <img src="../assets/clock.webp" class="scroll-clock" alt="Clock">
+        </div>
+
+
+
+        <div class="section timer-section">
+            <h2 class="section-title">Counting Down to YENIXA</h2>
+            <div id="countdown" class="countdown-container">
+                <div class="time-block">
+                    <span id="days">00</span>
+                    <label>Days</label>
+                </div>
+                <div class="time-block">
+                    <span id="hours">00</span>
+                    <label>Hours</label>
+                </div>
+                <div class="time-block">
+                    <span id="minutes">00</span>
+                    <label>Mins</label>
+                </div>
+                <div class="time-block">
+                    <span id="seconds">00</span>
+                    <label>Secs</label>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="section">
+            <h2 class="section-title">About YENIXA 2026</h2>
+            <div class="section-content">
+                <p>Now, as we transition into YENIXA 2026, we are shattering traditional boundaries to create a unified
+                    arena that welcomes all disciplines. This year, we move beyond structured tracks into a grand,
+                    track-free exploration centered on the theme of Time Travel. By blending the wisdom of the past with
+                    a bold vision for the future, YENIXA 2026 stands as a legendary portal where talent meets
+                    opportunity. It is a high-stakes environment designed for today’s champions to rewrite history and
+                    forge new legacies across the timeline.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">History of YENIXA</h2>
+            <div class="section-content">
+                <p>Building on the foundation laid by YENIXA 2025, the fest has rapidly evolved from its origins into a
+                    premier national-level stage. Our previous edition set a high standard for innovation and
+                    collaboration, successfully hosting a cohort of 250 talented participants from over 25 different
+                    colleges. Through its specialized tracks and competitive spirit, YENIXA 2025 proved to be a vital
+                    launchpad for creativity, establishing a community of visionaries that continues to grow.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">General Rules of YENIXA 2026</h2>
+            <div class="section-content">
+                <ol class="rules-list">
+                    <li><strong>Participation is open for all UG students.</strong></li>
+                    <li><strong>The registration counter will be open from 8:00 AM to 8:30 AM on the date of the
+                            event.</strong></li>
+                    <li><strong>No spot registration is allowed.</strong></li>
+                    <li><strong>Participants are required to be technically equipped with a laptop, dongle, and pen
+                            drive.</strong></li>
+                    <li><strong>Formal dress code is mandatory.</strong></li>
+                    <li><strong>Any form of misbehavior will lead to disqualification.</strong></li>
+                    <li><strong>Participants must hold a valid college ID during registration.</strong></li>
+                    <li><strong>Participants must submit a bonafide letter from their respective college.</strong></li>
+                    <li><strong>The judges’ decisions will be final and binding in all aspects.</strong></li>
+                    <li><strong>To qualify for the overall championship, a team must compete in at least
+                            events.</strong></li>
+
+                    <p class="rules-note"><strong>Last Date for Registration: 13.02.2026</strong></p>
+            </div>
+        </div>
+
+        <div class="section portal-section">
+            <div class="portal-wrapper">
+                <a href="../assets/brochure.pdf" class="portal-btn btn-left" target="_blank">
+                    <span class="btn-glow"></span>
+                    <i class="fas fa-file-download"></i> BROCHURE
+                </a>
+
+                <div class="portal-core" id="timeLeapTrigger">
+                    <div class="portal-image-container">
+                        <img src="../assets/time_travel.webp" alt="Portal Core" class="portal-image">
+                    </div>
+                    <div class="portal-status-text">EVENTS</div>
+                </div>
+                <a href="template/registration.html" class="portal-btn btn-right">
+                    <span class="btn-glow"></span>
+                    REGISTER <i class="fas fa-user-plus"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- Replace the entire contact-sponsor-container section with this -->
+        <section class="section contact-sponsor-wrapper">
+            <center>
+                <h1>Contact Info</h1>
+            </center>
+            <div class="contact-sponsor-container">
+                <div class="contact-grid">
+                    <div class="contact-card">
+                        <h3 class="coord-title">Faculty Coordinators</h3>
+                        <div class="coord-details">
+                            <p class="coord-name">Ms. Bindiya G</p>
+                            <p class="coord-phone">+91 81479 84641</p>
+                            <p class="coord-name">Ms. Lawren Maria Castelino</p>
+                            <p class="coord-phone">+91 9449640880</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-card">
+                        <h3 class="coord-title">Student Coordinators</h3>
+                        <div class="coord-details">
+                            <p class="coord-name">Mr. Fahaz Ahmad</p>
+                            <p class="coord-phone">+91 99724 68852</p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+
+
+        <div class="sponsor-section">
+            <h2 class="section-title">Our Time Guardians</h2>
+            <div class="sponsor-slider">
+                <div class="sponsor-track">
+                    <img src="/assets/sponsors/logo1.png" alt="Sponsor">
+                    <img src="/assets/sponsors/logo2.png" alt="Sponsor">
+                    <img src="/assets/sponsors/logo3.png" alt="Sponsor">
+                    <img src="/assets/sponsors/logo4.png" alt="Sponsor">
+                    <img src="/assets/sponsors/logo5.png" alt="Sponsor">
+                    <img src="/assets/sponsors/logo1.png" alt="Sponsor">
+                    <img src="/assets/sponsors/logo2.png" alt="Sponsor">
+                    <img src="/assets/sponsors/logo3.png" alt="Sponsor">
+                    <img src="/assets/sponsors/logo4.png" alt="Sponsor">
+                    <img src="/assets/sponsors/logo5.png" alt="Sponsor">
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+    </section>
+
+   <footer class="site-footer">
+    <div class="footer-main">
+        <div class="footer-logo">
+            <img src="../assets/yenepoya_logo.webp" alt="Yenepoya Institute Logo">
+        </div>
+        <div class="footer-text-content">
+            <p>Yenepoya (Deemed to be University) brings you a world-class educational experience in the pristine
+                surroundings of a tranquil South Indian town. Accredited as 'A+' by NAAC and ranked 95th in the NIRF
+                ranking of 2024, YIASCM provides quality and industry-aligned education across various disciplines.
+            </p>
+        </div>
+    </div>
+
+    <div class="footer-divider"></div>
+
+    <div class="footer-bottom">
+        <div class="footer-socials">
+            <a href="https://www.instagram.com/yenixa2026?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="><i class="fab fa-instagram"></i> yenixa_2026</a>
+           
+            <a href="#"><i class="fas fa-envelope"></i> yenixa@yenepoya.edu.in</a>
+        </div>
+        <div class="footer-credits">    
+            <p>Designed and Developed by Team YENOVA<strong></strong></p>
+            <p class="footer-copyright">© YENIXA 2026. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
+
+    <script src="../js/components.js"></script>
+
+    <script src="../js/script.js"></script>
+</body>
+
+</html>

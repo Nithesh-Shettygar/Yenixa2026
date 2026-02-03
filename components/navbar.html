@@ -1,0 +1,79 @@
+<style>
+    /* Scoped Navbar Styles */
+    .yenixa-navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 65px;
+        background: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
+        display: flex;
+        align-items: center;
+        padding: 0 30px;
+        z-index: 9999;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        box-sizing: border-box;
+    }
+
+    .nav-left {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .nav-back-btn {
+        background: transparent;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        color: white;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .nav-back-btn:hover {
+        background: var(--neon-blue, #05D0FF);
+        border-color: var(--neon-blue, #05D0FF);
+        box-shadow: 0 0 15px var(--neon-blue, #05D0FF);
+        color: #000;
+    }
+
+    .nav-title {
+        font-family: 'font3', sans-serif; /* High-tech feel */
+        color: #fff;
+        font-size: 1.4rem;
+        letter-spacing: 3px;
+        font-weight: 700;
+        text-transform: uppercase;
+        margin: 0;
+        background: linear-gradient(90deg, #fff, var(--vintage-brown, #FFAC72));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    @media (max-width: 768px) {
+        .yenixa-navbar {
+            padding: 0 15px;
+            height: 60px;
+        }
+        .nav-title {
+            font-size: 1.1rem;
+            letter-spacing: 1.5px;
+        }
+    }
+</style>
+
+<nav class="yenixa-navbar">
+    <div class="nav-left">
+        <button class="nav-back-btn" onclick="window.history.back()" aria-label="Go Back">
+            <i class="fas fa-arrow-left"></i>
+        </button>
+        <h1 class="nav-title">YENIXA 2026</h1>
+    </div>
+</nav>

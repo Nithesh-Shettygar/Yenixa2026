@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YENIXA 2026 | Temporal Jump</title>
+    <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@200..800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/loader-style.css">
+</head>
+<body>
+
+    <div id="wormhole-stage">
+        <div class="scene" id="scene"></div>
+        <div class="event-horizon"></div>
+        <div class="blur-layer" id="blurLayer"></div>
+        
+        <div class="terminal-text" id="terminalText">
+            <span>SYSTEM: TEMPORAL NAVIGATION ONLINE</span>
+            <span>COORDINATES: 40.7128° N, 74.0060° W</span>
+            <span>TIMELINE: YENIXA 2026</span>
+        </div>
+        
+        <div class="loader-container" id="loaderUI">
+            <div class="progress-bar-bg">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <div class="loading-text" id="statusText">SCANNING TIMELINE...</div>
+        </div>
+
+        <div class="arrival-message" id="arrivalMessage">DESTINATION REACHED</div>
+        <div class="black-hole" id="blackHole"></div>
+        <div class="redirect-overlay" id="redirectOverlay"></div>
+    </div>
+
+    <div style="display:none;">
+        <img src="assets/yenepoya_logo.webp" id="pre1">
+        <img src="assets/Yenixa logo.webp" id="pre2">
+        <img src="assets/time_travel.webp" id="pre3">
+        <video src="assets/videos/bg_video.mp4" id="preVid"></video>
+    </div>
+
+    <script src="js/loader-script.js"></script>
+</body>
+</html>

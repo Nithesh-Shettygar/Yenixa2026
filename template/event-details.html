@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Details | YENIXA 2026</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Oxanium:wght@300;400;600;700&family=Orbitron:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+<link rel="stylesheet" href="../css/event-details.css">
+   
+</head>
+
+<body>
+
+
+    <!-- Dynamic Background Container -->
+    <div class="dynamic-background-container" id="dynamicBackground">
+        <!-- Background images will be dynamically inserted here -->
+    </div>
+
+    <!-- Dynamic gradient overlay -->
+    <div class="dynamic-bg"></div>
+
+    <!-- Navbar -->
+   <nav class="yenixa-navbar">
+    <div class="nav-left">
+        <button class="nav-btn" onclick="window.history.back()" aria-label="Go Back">
+            <i class="fas fa-arrow-left"></i>
+        </button>
+        <h1 class="nav-title">YENIXA 2026</h1>
+    </div>
+
+    <div class="nav-right">
+        <a href="/index.html" class="nav-btn" aria-label="Home">
+            <i class="fas fa-home"></i>
+        </a>
+    </div>
+</nav>
+
+    <script src="/js/components.js"></script>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Event Header -->
+        <div class="event-header">
+            <div class="event-logo-container">
+                <img id="eventLogo" class="event-logo" src="" alt="Event Logo">
+            </div>
+            <h1 id="eventThematic" class="event-thematic"></h1>
+            <h2 id="eventName" class="event-name"></h2>
+        </div>
+
+        <!-- Temporal HUD: System Specs -->
+        <div class="temporal-section">
+            <div class="section-header">Details</div>
+            <div class="hud-grid" id="systemSpecs">
+                <!-- Will be populated by JavaScript -->
+            </div>
+        </div>
+
+        <hr class="hr-divider">
+
+        <!-- About Section -->
+        <div class="content-section">
+            <h2 class="section-title">About The Event</h2>
+            <div class="about-text" id="eventAbout">
+                <!-- Will be populated by JavaScript -->
+            </div>
+        </div>
+
+        <!-- Rules Section -->
+        <div class="content-section">
+            <h2 class="section-title">Event Rules</h2>
+            <ul class="rules-list" id="eventRules">
+                <!-- Will be populated by JavaScript -->
+            </ul>
+        </div>
+
+        <hr class="hr-divider">
+        <div class="temporal-section">
+            <div class="section-header">Contact Info</div>
+            <div class="hud-grid" id="temporalAnchors">
+                <!-- Will be populated by JavaScript -->
+            </div>
+        </div>
+
+        <hr class="hr-divider">
+        <!-- Enhanced Register Button -->
+        <button class="register-btn" onclick="registerForEvent()">
+            REGISTER NOW
+        </button>
+    </div>
+
+   <footer class="site-footer">
+    <div class="footer-main">
+        <div class="footer-logo">
+            <img src="../assets/yenepoya_logo.webp" alt="Yenepoya Institute Logo">
+        </div>
+        <div class="footer-text-content">
+            <p>Yenepoya (Deemed to be University) brings you a world-class educational experience in the pristine
+                surroundings of a tranquil South Indian town. Accredited as 'A+' by NAAC and ranked 95th in the NIRF
+                ranking of 2024, YIASCM provides quality and industry-aligned education across various disciplines.
+            </p>
+        </div>
+    </div>
+
+    <div class="footer-divider"></div>
+
+    <div class="footer-bottom">
+        <div class="footer-socials">
+            <a href="https://www.instagram.com/yenixa2026?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="><i class="fab fa-instagram"></i> yenixa_2026</a>
+           
+            <a href="#"><i class="fas fa-envelope"></i> yenixa@yenepoya.edu.in</a>
+        </div>
+        <div class="footer-credits">    
+            <p>Designed and Developed by Team YENOVA<strong></strong></p>
+            <p class="footer-copyright">© YENIXA 2026. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
+
+    <script src="../js/components.js"></script>
+   <script src="../js/event-details.js"></script>
+</body>
+
+</html>

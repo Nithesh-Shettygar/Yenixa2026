@@ -1,0 +1,58 @@
+:root {
+    --warp-color: #00d4ff;
+    --bg: #000205;
+}
+
+body {
+    margin: 0; background: var(--bg); height: 100vh;
+    overflow: hidden; font-family: 'Oxanium', sans-serif;
+    display: flex; justify-content: center; align-items: center;
+}
+
+#wormhole-stage {
+    position: relative; width: 100%; height: 100%;
+    perspective: 600px; overflow: hidden;
+}
+
+.trail {
+    position: absolute; width: 2px; height: 180px;
+    left: 50%; top: 50%;
+    background: linear-gradient(to bottom, transparent, var(--warp-color), #fff, transparent);
+    transform-origin: center; opacity: 0;
+}
+
+@keyframes travel {
+    0% { transform: rotate(var(--r)) translateY(-50px) translateZ(-2000px); opacity: 0; }
+    15% { opacity: 1; }
+    85% { opacity: 1; }
+    100% { transform: rotate(var(--r)) translateY(500px) translateZ(1000px); opacity: 0; }
+}
+
+.loader-container {
+    position: absolute; bottom: 15%; width: 300px; text-align: center;
+    left: 50%; transform: translateX(-50%); z-index: 200;
+}
+
+.progress-bar-bg {
+    width: 100%; height: 4px; background: rgba(0, 212, 255, 0.1);
+    border-radius: 10px; border: 1px solid rgba(0, 212, 255, 0.3); margin-bottom: 10px;
+}
+
+.progress-fill {
+    width: 0%; height: 100%; background: var(--warp-color);
+    box-shadow: 0 0 15px var(--warp-color); transition: width 0.3s ease;
+}
+
+.arrival-message {
+    position: absolute; color: white; font-size: 2rem; letter-spacing: 10px;
+    opacity: 0; transition: 1s; z-index: 300; pointer-events: none;
+}
+
+.arrival-message.visible { opacity: 1; letter-spacing: 15px; }
+
+.redirect-overlay {
+    position: fixed; inset: 0; background: black; z-index: 2000;
+    opacity: 0; pointer-events: none; transition: 1.5s;
+}
+
+.redirect-overlay.active { opacity: 1; }

@@ -1,0 +1,1676 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register | YENIXA 2026</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Oxanium:wght@300;400;600;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --neon-blue: #05D0FF;
+            --vintage-brown: #FFAC72;
+            --dark-bg: #0A0A0A;
+            --card-bg: rgba(255, 255, 255, 0.05);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Oxanium', sans-serif;
+            background-color: var(--dark-bg);
+            color: white;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Video Background */
+        #bgVideo {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -3;
+            opacity: 0.3;
+        }
+
+        /* Dark overlay over video */
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: -2;
+        }
+
+        /* Scrollbar Styling */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--neon-blue);
+            border-radius: 4px;
+        }
+
+
+        .back-button {
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 10px;
+            transition: color 0.3s;
+        }
+
+        .back-button:hover {
+            color: var(--neon-blue);
+        }
+
+        .event-year {
+            color: var(--neon-blue);
+            font-family: 'Cinzel Decorative', serif;
+            font-size: 1.8rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-align: left;
+            flex-grow: 1;
+        }
+
+        /* Slide Switch for Registration Type */
+        .registration-toggle {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .toggle-container {
+            display: flex;
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 50px;
+            padding: 5px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            width: 350px;
+        }
+
+        .toggle-slider {
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            width: calc(50% - 5px);
+            height: calc(100% - 10px);
+            background: linear-gradient(135deg, var(--neon-blue), var(--vintage-brown));
+            border-radius: 50px;
+            transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            z-index: 1;
+        }
+
+        .toggle-option {
+            flex: 1;
+            text-align: center;
+            padding: 15px 30px;
+            cursor: pointer;
+            position: relative;
+            z-index: 2;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: color 0.3s;
+        }
+
+        .toggle-option.active {
+            color: black;
+        }
+
+        .toggle-option i {
+            margin-right: 8px;
+            font-size: 1.2rem;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 100px 20px 50px;
+        }
+
+        /* Page Header */
+        .page-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .page-title {
+            font-family: 'Cinzel Decorative', serif;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, var(--neon-blue), var(--vintage-brown));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .page-subtitle {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1.1rem;
+        }
+
+        /* College Details Section */
+        .college-section {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            animation: fadeInUp 0.5s ease-out;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            color: white;
+            margin-bottom: 20px;
+            font-family: 'Cinzel Decorative', serif;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 2px;
+            background: var(--neon-blue);
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: white;
+            font-size: 1rem;
+        }
+
+        .form-label .required {
+            color: #ff4757;
+            margin-left: 3px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px 15px;
+            background: rgba(255, 255, 255, 0.07);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            color: white;
+            font-family: 'Oxanium', sans-serif;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--neon-blue);
+            box-shadow: 0 0 0 2px rgba(5, 208, 255, 0.2);
+        }
+
+        .form-input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Events Selection Section */
+        .selection-section {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            animation: fadeInUp 0.5s ease-out;
+            display: none;
+        }
+
+        .selection-section.active {
+            display: block;
+        }
+
+        .section-subtitle {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 25px;
+            font-size: 1rem;
+        }
+
+        .info-box {
+            background: rgba(5, 208, 255, 0.1);
+            border: 1px solid var(--neon-blue);
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .info-box i {
+            color: var(--neon-blue);
+            font-size: 1.5rem;
+        }
+
+        .info-text {
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .info-text .highlight {
+            color: var(--vintage-brown);
+            font-weight: 600;
+        }
+
+        /* Events Checkbox Grid */
+        .events-checkbox-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+            max-height: 400px;
+            overflow-y: auto;
+            padding: 10px;
+        }
+
+        .event-checkbox-item {
+            background: rgba(255, 255, 255, 0.03);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .event-checkbox-item:hover {
+            transform: translateY(-3px);
+            border-color: var(--neon-blue);
+        }
+
+        .event-checkbox-item.selected {
+            border-color: var(--neon-blue);
+            background: rgba(5, 208, 255, 0.05);
+            box-shadow: 0 5px 15px rgba(5, 208, 255, 0.2);
+        }
+
+        .event-checkbox-details {
+            flex: 1;
+        }
+
+        .event-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: white;
+        }
+
+        .event-participants {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        /* Custom Checkbox */
+        .checkbox-container {
+            display: inline-flex;
+            align-items: center;
+            cursor: pointer;
+            margin: 0;
+        }
+
+        .checkbox-input {
+            display: none;
+        }
+
+        .checkbox-custom {
+            width: 24px;
+            height: 24px;
+            min-width: 24px;
+            border: 2px solid var(--neon-blue);
+            border-radius: 6px;
+            position: relative;
+            transition: all 0.3s;
+        }
+
+        .checkbox-input:checked+.checkbox-custom {
+            background: var(--neon-blue);
+        }
+
+        .checkbox-input:checked+.checkbox-custom::after {
+            content: '✓';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: black;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        /* Counter Display */
+        .counter-display {
+            text-align: center;
+            margin: 20px 0;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .counter-text {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+
+        .counter-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--neon-blue);
+            font-family: 'Cinzel Decorative', serif;
+        }
+
+        .counter-minimum {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+
+        /* Participants Form Section */
+        .form-section {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            display: none;
+        }
+
+        .form-section.active {
+            display: block;
+            animation: fadeInUp 0.5s ease-out;
+        }
+
+        .form-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .participant-row {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+        }
+
+        .participant-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .participant-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--neon-blue);
+        }
+
+        .participant-number {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Selected Events Display */
+        .selected-events-display {
+            margin: 20px 0;
+            padding: 15px;
+            background: rgba(5, 208, 255, 0.05);
+            border-radius: 10px;
+            border: 1px solid rgba(5, 208, 255, 0.2);
+            display: none;
+        }
+
+        .selected-events-display.show {
+            display: block;
+        }
+
+        .selected-events-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--neon-blue);
+        }
+
+        .selected-events-list {
+            list-style: none;
+            max-height: 200px;
+            overflow-y: auto;
+            padding: 5px;
+        }
+
+        .selected-event-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 10px;
+            margin-bottom: 5px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        .selected-event-item:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .event-item-name {
+            font-weight: 500;
+        }
+
+        .event-item-participants {
+            font-size: 0.8rem;
+            color: var(--vintage-brown);
+            background: rgba(255, 172, 114, 0.1);
+            padding: 2px 8px;
+            border-radius: 10px;
+        }
+
+        /* Event Participants Form Section - Updated for Navigation */
+        .event-participants-section {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            display: none;
+        }
+
+        .event-participants-section.active {
+            display: block;
+            animation: fadeInUp 0.5s ease-out;
+        }
+
+        .event-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .event-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--neon-blue);
+        }
+
+        .event-participant-count {
+            font-size: 1rem;
+            color: var(--vintage-brown);
+            background: rgba(255, 172, 114, 0.1);
+            padding: 8px 15px;
+            border-radius: 20px;
+        }
+
+        /* Team Leader Section */
+        .team-leader-section {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 2px solid var(--neon-blue);
+        }
+
+        .team-leader-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 25px;
+            color: var(--neon-blue);
+            font-family: 'Cinzel Decorative', serif;
+            text-align: center;
+        }
+
+        /* Step Controls - Rectangular Buttons */
+        .step-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .step-btn {
+            background: var(--card-bg);
+            border: 2px solid var(--neon-blue);
+            color: white;
+            padding: 12px 30px;
+            font-family: 'Oxanium', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-radius: 8px;
+            min-width: 150px;
+        }
+
+        .step-btn:hover:not(:disabled) {
+            background: rgba(5, 208, 255, 0.1);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(5, 208, 255, 0.3);
+        }
+
+        .step-btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .step-btn:disabled:hover {
+            background: var(--card-bg);
+            transform: none;
+            box-shadow: none;
+        }
+
+        .progress-indicator {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1rem;
+            font-weight: 600;
+            text-align: center;
+            flex-grow: 1;
+        }
+
+        /* Submit Button */
+        .submit-btn {
+            display: block;
+            width: 300px;
+            margin: 40px auto;
+            padding: 18px 40px;
+            background: linear-gradient(135deg, var(--neon-blue), var(--vintage-brown));
+            color: black;
+            border: none;
+            border-radius: 50px;
+            font-family: 'Oxanium', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            box-shadow: 0 5px 15px rgba(5, 208, 255, 0.3);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: left 0.7s;
+            z-index: -1;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 30px rgba(5, 208, 255, 0.4);
+        }
+
+        .submit-btn:hover::before {
+            left: 100%;
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .submit-btn:disabled:hover {
+            transform: none;
+            box-shadow: 0 5px 15px rgba(5, 208, 255, 0.3);
+        }
+
+        /* Confirmation Message */
+        .confirmation-message {
+            text-align: center;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 15px;
+            border: 2px solid var(--neon-blue);
+            margin: 30px 0;
+            display: none;
+        }
+
+        .confirmation-message.active {
+            display: block;
+            animation: fadeInUp 0.5s ease-out;
+        }
+
+        .confirmation-icon {
+            font-size: 4rem;
+            color: var(--neon-blue);
+            margin-bottom: 20px;
+        }
+
+        .confirmation-title {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            font-family: 'Cinzel Decorative', serif;
+        }
+
+        .confirmation-text {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+            max-width: 600px;
+            margin: 0 auto 20px;
+        }
+
+        /* Championship Warning */
+        .championship-warning {
+            background: rgba(255, 172, 114, 0.1) !important;
+            border-color: var(--vintage-brown) !important;
+            display: none;
+        }
+
+        .championship-warning i {
+            color: var(--vintage-brown) !important;
+        }
+
+        /* Terms & Conditions */
+        .terms-section {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 10px;
+            padding: 25px;
+            margin-top: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .terms-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--neon-blue);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 80px 15px 30px;
+            }
+
+            .page-title {
+                font-size: 2rem;
+            }
+
+            .event-year {
+                font-size: 1.5rem;
+            }
+
+            .toggle-container {
+                width: 300px;
+            }
+
+            .toggle-option {
+                padding: 12px 20px;
+                font-size: 1rem;
+            }
+
+            .events-checkbox-grid {
+                grid-template-columns: 1fr;
+                max-height: 300px;
+            }
+
+            .submit-btn {
+                width: 90%;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .step-controls {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .step-btn {
+                width: 100%;
+                min-width: unset;
+            }
+
+            .progress-indicator {
+                order: -1;
+                margin-bottom: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-title {
+                font-size: 1.8rem;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            .toggle-container {
+                width: 280px;
+            }
+
+            .toggle-option {
+                padding: 10px 15px;
+                font-size: 0.9rem;
+            }
+
+            .toggle-option i {
+                margin-right: 5px;
+                font-size: 1rem;
+            }
+
+            .submit-btn {
+                padding: 16px 30px;
+                font-size: 1.1rem;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Ensure fonts are available within the component */
+        @font-face {
+            font-family: 'Font3';
+            src: url('../assets/fonts/neuropol.ttf') format('truetype');
+        }
+
+        .yenixa-navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 65px;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            /* Pushes content to opposite sides */
+            padding: 0 30px;
+            z-index: 9999;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            box-sizing: border-box;
+        }
+
+        .nav-left,
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .nav-btn {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            /* For link styling */
+        }
+
+        .nav-btn:hover {
+            background: var(--neon-blue, #05D0FF);
+            border-color: var(--neon-blue, #05D0FF);
+            box-shadow: 0 0 15px var(--neon-blue, #05D0FF);
+            color: #000;
+        }
+
+        .nav-title {
+            font-family: 'Font3', sans-serif;
+            color: #fff;
+            font-size: 1.4rem;
+            letter-spacing: 3px;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin: 0;
+            background: linear-gradient(90deg, #fff, var(--vintage-brown, #FFAC72));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        @media (max-width: 768px) {
+            .yenixa-navbar {
+                padding: 0 15px;
+                height: 60px;
+            }
+
+            .nav-title {
+                font-size: 1.1rem;
+                letter-spacing: 1.5px;
+            }
+        }
+
+        /* Footer Styles */
+        .site-footer {
+            background: linear-gradient(135deg,
+                    rgba(255, 172, 114, 0.9) 0%,
+                    rgba(5, 208, 255, 0.9) 100%);
+            color: #0a0a0a;
+            padding: 60px 40px 20px;
+            position: relative;
+            z-index: 10;
+            margin-top: 0;
+        }
+
+        .footer-main {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 50px;
+        }
+
+        .footer-logo img {
+            height: 90px;
+            filter: brightness(0.9) drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3));
+            transition: transform 0.3s ease;
+        }
+
+        .footer-logo img:hover {
+            transform: scale(1.05);
+        }
+
+        .footer-text-content {
+            flex: 1;
+            text-align: right;
+        }
+
+        .footer-text-content p {
+            font-family: 'Oxanium-VariableFont_wght', 'Oxanium', sans-serif;
+            font-size: 1rem;
+            line-height: 1.6;
+            margin: 0;
+            color: #0a0a0a;
+            text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.5);
+        }
+
+        .footer-divider {
+            max-width: 1200px;
+            height: 2px;
+            background: linear-gradient(to right, transparent, #0a0a0a, transparent);
+            margin: 40px auto 20px;
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-socials {
+            display: flex;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+
+        .footer-socials a {
+            font-family: 'Oxanium-VariableFont_wght', 'Oxanium', sans-serif;
+            color: #0a0a0a;
+            text-decoration: none;
+            transition: all 0.3s;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 5px 10px;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-socials a:hover {
+            color: #05D0FF;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .footer-socials a i {
+            font-size: 1.1rem;
+        }
+
+        .footer-credits {
+            text-align: right;
+        }
+
+        .footer-credits p {
+            font-family: 'CinzelDecorative-Bold', 'Cinzel Decorative', serif;
+            margin: 0;
+            letter-spacing: 1px;
+            color: #0a0a0a;
+        }
+
+        .footer-credits strong {
+            color: #FFAC72;
+            text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+        }
+
+        .footer-copyright {
+            font-size: 0.65rem;
+            opacity: 0.9;
+            margin-top: 8px !important;
+            font-family: 'Oxanium-VariableFont_wght', 'Oxanium', sans-serif;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .site-footer {
+                padding: 40px 20px 15px;
+            }
+
+            .footer-main {
+                flex-direction: column;
+                text-align: center;
+                gap: 20px;
+            }
+
+            .footer-text-content {
+                text-align: center;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+
+            .footer-socials {
+                justify-content: center;
+                gap: 15px;
+            }
+
+            .footer-credits {
+                text-align: center;
+            }
+
+            .footer-logo img {
+                height: 70px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .site-footer {
+                padding: 30px 15px 10px;
+            }
+
+            .footer-logo img {
+                height: 60px;
+            }
+
+            .footer-text-content p {
+                font-size: 0.9rem;
+            }
+
+            .footer-socials {
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+            }
+
+            .footer-socials a {
+                width: 100%;
+                justify-content: center;
+                padding: 8px;
+            }
+
+            .footer-credits p {
+                font-size: 0.85rem;
+            }
+
+            .footer-copyright {
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <!-- Video Background -->
+    <video autoplay muted loop id="bgVideo">
+        <source src="../assets/videos/bg2_video.mp4" type="video/mp4">
+    </video>
+
+
+
+    <nav class="yenixa-navbar">
+        <div class="nav-left">
+            <button class="nav-btn" onclick="window.history.back()" aria-label="Go Back">
+                <i class="fas fa-arrow-left"></i>
+            </button>
+            <h1 class="nav-title">YENIXA 2026</h1>
+        </div>
+
+        <div class="nav-right">
+            <a href="../index.html" class="nav-btn" aria-label="Home">
+                <i class="fas fa-home"></i>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Page Header -->
+        <div class="page-header">
+            <h1 class="page-title">REGISTRATION PORTAL</h1>
+            <p class="page-subtitle">Join the Time Travel Arena - Secure your spot for YENIXA 2026</p>
+        </div>
+
+        <!-- Registration Type Toggle -->
+        <div class="registration-toggle">
+            <div class="toggle-container">
+                <div class="toggle-slider" id="toggleSlider"></div>
+                <div class="toggle-option active" onclick="selectRegistrationType('individual')">
+                    <i class="fas fa-user"></i><br> Individual
+                </div>
+                <div class="toggle-option" onclick="selectRegistrationType('group')">
+                    <i class="fas fa-users"></i><br> Group
+                </div>
+            </div>
+        </div>
+
+        <!-- College Details Section -->
+        <div id="collegeSection" class="college-section">
+            <h2 class="section-title">College Details</h2>
+            <p class="section-subtitle">Please provide your college information</p>
+
+            <div class="form-grid">
+                <div class="form-group">
+                    <label class="form-label">College Name <span class="required">*</span></label>
+                    <input type="text" class="form-input" id="collegeName" placeholder="Enter your college name"
+                        required>
+                </div>
+            </div>
+        </div>
+
+        <!-- Individual Registration Section -->
+        <div id="individualSection" class="selection-section">
+            <h2 class="section-title">Select Event</h2>
+            <p class="section-subtitle">Choose one event for individual participation</p>
+
+            <!-- Auto-selected event if coming from event page -->
+            <div id="autoSelectedEvent" class="info-box" style="display: none;">
+                <i class="fas fa-info-circle"></i>
+                <div class="info-text">
+                    You're registering for: <span id="autoEventName" class="highlight"></span>
+                </div>
+            </div>
+
+            <div class="events-checkbox-grid" id="individualEventsGrid">
+                <!-- Events will be populated by JavaScript -->
+            </div>
+
+            <div class="counter-display">
+                <div class="counter-text">Selected Events</div>
+                <div class="counter-number" id="individualCounter">0</div>
+                <div class="counter-minimum">Minimum: 1 event</div>
+            </div>
+
+            <button class="submit-btn" onclick="proceedToIndividualForm()" id="individualProceedBtn" disabled>
+                PROCEED TO DETAILS
+            </button>
+        </div>
+
+        <!-- Group Registration Section -->
+        <div id="groupSection" class="selection-section">
+            <h2 class="section-title">Select Events</h2>
+            <p class="section-subtitle">Choose events for your team participation</p>
+
+            <div class="info-box championship-warning" id="championshipWarning">
+                <i class="fas fa-exclamation-triangle"></i>
+                <div class="info-text">
+                    <span class="highlight">For Championship Qualification:</span> Minimum 9 events required with either
+                    <span class="highlight">The Eternal Ascendant (Best Manager)</span> or <span class="highlight">Red
+                        Alert404 (IT Manager)</span> compulsory.
+                </div>
+            </div>
+
+            <div class="selected-events-display" id="selectedEventsDisplay">
+                <div class="selected-events-title">Selected Events</div>
+                <ul class="selected-events-list" id="selectedEventsList">
+                    <!-- Selected events will be shown here -->
+                </ul>
+            </div>
+
+            <div class="events-checkbox-grid" id="groupEventsGrid">
+                <!-- Events will be populated by JavaScript -->
+            </div>
+
+            <div class="counter-display">
+                <div class="counter-text">Selected Events</div>
+                <div class="counter-number" id="groupCounter">0</div>
+                <div class="counter-minimum">Select any number of events</div>
+            </div>
+
+            <button class="submit-btn" onclick="proceedToGroupForm()" id="groupProceedBtn" disabled>
+                PROCEED TO TEAM DETAILS
+            </button>
+        </div>
+
+        <!-- Individual Form Section -->
+        <div id="individualForm" class="form-section">
+            <div class="form-header">
+                <h2 class="section-title">Participant Details</h2>
+                <div class="selected-event-info" id="individualEventInfo"></div>
+            </div>
+
+            <div class="participant-row">
+                <div class="participant-header">
+                    <div class="participant-title">Participant 1</div>
+                    <div class="participant-number">Individual Registration</div>
+                </div>
+
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label class="form-label">Full Name <span class="required">*</span></label>
+                        <input type="text" class="form-input" id="individualName" placeholder="Enter your full name"
+                            required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Email <span class="required">*</span></label>
+                        <input type="email" class="form-input" id="individualEmail"
+                            placeholder="Enter your email address" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Phone Number <span class="required">*</span></label>
+                        <input type="tel" class="form-input" id="individualPhone"
+                            placeholder="Enter your 10-digit mobile number" pattern="[0-9]{10}" required>
+                    </div>
+                </div>
+            </div>
+
+            <div class="terms-section">
+                <div class="terms-title">Terms & Conditions</div>
+                <div style="margin-bottom: 15px; color: rgba(255, 255, 255, 0.8); line-height: 1.6;">
+                    By registering for YENIXA 2026, you agree to abide by all event rules and regulations. All
+                    information provided must be accurate. The organizing committee reserves the right to disqualify any
+                    participant for misconduct or violation of rules.
+                </div>
+
+                <label class="checkbox-container" style="display: block;">
+                    <input type="checkbox" class="checkbox-input" id="individualTerms" required>
+                    <span class="checkbox-custom"></span>
+                    <span class="checkbox-label">
+                        I agree to the terms and conditions of YENIXA 2026 and confirm that all information provided is
+                        accurate.
+                    </span>
+                </label>
+            </div>
+
+            <button class="submit-btn" onclick="submitIndividualRegistration()" id="individualSubmitBtn">
+                SUBMIT REGISTRATION
+            </button>
+        </div>
+
+        <!-- Group Form Section - Updated with Team Leader Section -->
+        <div id="groupForm" class="form-section">
+            <div class="form-header">
+                <h2 class="section-title">Team Registration</h2>
+
+            </div>
+
+            <!-- Team Leader Section -->
+            <div class="team-leader-section">
+                <div class="team-leader-title">Team Leader Details</div>
+
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label class="form-label">Full Name <span class="required">*</span></label>
+                        <input type="text" class="form-input" id="teamLeaderName"
+                            placeholder="Enter team leader's full name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Email <span class="required">*</span></label>
+                        <input type="email" class="form-input" id="teamLeaderEmail"
+                            placeholder="Enter team leader's email address" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Phone Number <span class="required">*</span></label>
+                        <input type="tel" class="form-input" id="teamLeaderPhone"
+                            placeholder="Enter team leader's 10-digit mobile number" pattern="[0-9]{10}" required>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Event Participants Sections will be added here dynamically -->
+            <div id="eventParticipantsContainer"></div>
+
+            <!-- Step Controls -->
+            <div class="step-controls">
+                <button class="step-btn" onclick="changeStep('prev')" id="prevStepBtn" disabled>
+                    <i class="fas fa-chevron-left"></i> Previous
+                </button>
+
+                <div class="progress-indicator" id="groupProgressIndicator">Step 1: Team Leader Details</div>
+
+                <button class="step-btn" onclick="changeStep('next')" id="nextStepBtn">
+                    Next <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+
+            <!-- Submit Button will be added here after all events -->
+            <div id="groupSubmitSection" style="display: none;">
+                <div class="terms-section">
+                    <div class="terms-title">Terms & Conditions</div>
+                    <div style="margin-bottom: 15px; color: rgba(255, 255, 255, 0.8); line-height: 1.6;">
+                        By registering for YENIXA 2026, you agree to abide by all event rules and regulations. All
+                        information provided must be accurate. The organizing committee reserves the right to disqualify
+                        any participant for misconduct or violation of rules.
+                    </div>
+
+                    <label class="checkbox-container" style="display: block;">
+                        <input type="checkbox" class="checkbox-input" id="groupTerms" required>
+                        <span class="checkbox-custom"></span>
+                        <span class="checkbox-label">
+                            I agree to the terms and conditions of YENIXA 2026 and confirm that all information provided
+                            is accurate.
+                        </span>
+                    </label>
+                </div>
+
+                <button class="submit-btn" onclick="submitGroupRegistration()" id="groupSubmitBtn">
+                    SUBMIT TEAM REGISTRATION
+                </button>
+            </div>
+        </div>
+
+        <!-- Confirmation Message -->
+        <div id="confirmationMessage" class="confirmation-message">
+            <div class="confirmation-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h2 class="confirmation-title">Registration Successful!</h2>
+            <p class="confirmation-text" id="confirmationText">
+                Your registration for YENIXA 2026 has been successfully submitted. You will receive a confirmation email
+                shortly.
+            </p>
+            <p class="confirmation-text">
+                Registration ID: <span id="registrationId"
+                    style="color: var(--neon-blue); font-weight: bold;">YEN2026-001</span>
+            </p>
+            <button class="submit-btn" onclick="window.location.href='/'">
+                RETURN TO HOME
+            </button>
+        </div>
+    </div>
+
+    <script src="/js/components.js"></script>
+    <footer class="site-footer">
+        <div class="footer-main">
+            <div class="footer-logo">
+                <img src="../assets/yenepoya_logo.webp" alt="Yenepoya Institute Logo">
+            </div>
+            <div class="footer-text-content">
+                <p>Yenepoya (Deemed to be University) brings you a world-class educational experience in the pristine
+                    surroundings of a tranquil South Indian town. Accredited as 'A+' by NAAC and ranked 95th in the NIRF
+                    ranking of 2024, YIASCM provides quality and industry-aligned education across various disciplines.
+                </p>
+            </div>
+        </div>
+
+        <div class="footer-divider"></div>
+
+        <div class="footer-bottom">
+            <div class="footer-socials">
+                <a
+                    href="https://www.instagram.com/yenixa2026?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="><i
+                        class="fab fa-instagram"></i> yenixa_2026</a>
+
+                <a href="#"><i class="fas fa-envelope"></i> yenixa@yenepoya.edu.in</a>
+            </div>
+            <div class="footer-credits">
+                <p>Designed and Developed by Team YENOVA<strong></strong></p>
+                <p class="footer-copyright">© YENIXA 2026. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 1. Events Data
+        const allEvents = [
+            { id: 1, name: "The Midnight Equation", thematic: "Mystery Case Solving", participants: "Team (2)", maxParticipants: 2 },
+            { id: 2, name: "Chrono Couture", thematic: "Face Painting and Ramp Walk", participants: "Team (2)", maxParticipants: 2 },
+            { id: 3, name: "Chronopreneur", thematic: "Team Entrepreneurship", participants: "Team (2-3)", maxParticipants: 3 },
+            { id: 4, name: "Rift in Reality", thematic: "Web Development", participants: "Team (2)", maxParticipants: 2 },
+            { id: 5, name: "Soul in Focus", thematic: "Photography Challenge", participants: "Solo", maxParticipants: 1 },
+            { id: 6, name: "Fireless Flavors in Time", thematic: "Cooking Without Fire", participants: "Team (3)", maxParticipants: 3 },
+            { id: 7, name: "Nexus Odyssey", thematic: "Marketing", participants: "Team (2)", maxParticipants: 2 },
+            { id: 8, name: "TimeShift", thematic: "League of Legends", participants: "Team (2)", maxParticipants: 2 },
+            { id: 9, name: "Renewed from Ruins", thematic: "Best from Waste", participants: "Team (2)", maxParticipants: 2 },
+            { id: 10, name: "TimeLoop", thematic: "Coding", participants: "Team (2)", maxParticipants: 2 },
+            { id: 11, name: "The Eternal Ascendant", thematic: "Best Manager", participants: "Solo", maxParticipants: 1 },
+            { id: 12, name: "The Human Epix", thematic: "HR", participants: "Team (2)", maxParticipants: 2 },
+            { id: 13, name: "Palimpsest", thematic: "Mockpress", participants: "Solo", maxParticipants: 1 },
+            { id: 14, name: "Capital Paradox", thematic: "Finance", participants: "Team (2)", maxParticipants: 2 },
+            { id: 15, name: "ChronoQuest", thematic: "Quiz", participants: "Team (2)", maxParticipants: 2 },
+            { id: 16, name: "Red Alert404", thematic: "IT Manager", participants: "Team (2)", maxParticipants: 2 },
+            { id: 17, name: "Re-Coded Bits", thematic: "E-Sports", participants: "Team (2)", maxParticipants: 2 }
+        ];
+
+        let registrationType = 'individual';
+        let selectedEvents = new Set();
+        let individualSelectedEvent = null;
+        let currentEventIndex = -1;
+        let sortedSelectedEvents = [];
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderEvents();
+            document.getElementById('individualSection').classList.add('active');
+        });
+
+        function selectRegistrationType(type) {
+            registrationType = type;
+            const slider = document.getElementById('toggleSlider');
+            const options = document.querySelectorAll('.toggle-option');
+
+            slider.style.transform = type === 'individual' ? 'translateX(0)' : 'translateX(100%)';
+            options[0].classList.toggle('active', type === 'individual');
+            options[1].classList.toggle('active', type === 'group');
+
+            document.getElementById('individualSection').classList.toggle('active', type === 'individual');
+            document.getElementById('groupSection').classList.toggle('active', type === 'group');
+
+            if (type === 'group') updateChampionshipWarning();
+
+            document.getElementById('individualForm').classList.remove('active');
+            document.getElementById('groupForm').classList.remove('active');
+            document.getElementById('confirmationMessage').classList.remove('active');
+        }
+
+        function renderEvents() {
+            const individualGrid = document.getElementById('individualEventsGrid');
+            const groupGrid = document.getElementById('groupEventsGrid');
+            individualGrid.innerHTML = ''; groupGrid.innerHTML = '';
+
+            allEvents.forEach(event => {
+                const html = (fn) => `<label class="checkbox-container"><input type="checkbox" class="checkbox-input" onchange="${fn}(${event.id}, this.checked)"><span class="checkbox-custom"></span></label><div class="event-checkbox-details"><div class="event-name">${event.name}</div><div style="color:var(--neon-blue);font-size:0.8rem;">${event.thematic}</div></div>`;
+
+                const iDiv = document.createElement('div'); iDiv.className = 'event-checkbox-item'; iDiv.dataset.id = event.id;
+                iDiv.innerHTML = html('selectIndividualEvent');
+                individualGrid.appendChild(iDiv);
+
+                const gDiv = document.createElement('div'); gDiv.className = 'event-checkbox-item'; gDiv.dataset.id = event.id;
+                gDiv.innerHTML = html('toggleGroupEvent');
+                groupGrid.appendChild(gDiv);
+            });
+        }
+
+        function selectIndividualEvent(id, checked) {
+            if (checked) {
+                individualSelectedEvent = id;
+                document.querySelectorAll('#individualEventsGrid .checkbox-input').forEach(cb => {
+                    if (parseInt(cb.closest('.event-checkbox-item').dataset.id) !== id) cb.checked = false;
+                });
+            } else individualSelectedEvent = null;
+            document.getElementById('individualProceedBtn').disabled = !individualSelectedEvent;
+            document.getElementById('individualCounter').textContent = individualSelectedEvent ? 1 : 0;
+        }
+
+        function toggleGroupEvent(id, checked) {
+            checked ? selectedEvents.add(id) : selectedEvents.delete(id);
+            document.getElementById('groupCounter').textContent = selectedEvents.size;
+            document.getElementById('groupProceedBtn').disabled = selectedEvents.size === 0;
+            updateChampionshipWarning();
+        }
+
+        function updateChampionshipWarning() {
+            const count = selectedEvents.size;
+            const hasComp = Array.from(selectedEvents).some(id => [11, 16].includes(id));
+            document.getElementById('championshipWarning').style.display = (count > 0 && (count < 9 || !hasComp)) ? 'flex' : 'none';
+        }
+
+        function validateCollegeDetails() {
+            const val = document.getElementById('collegeName').value.trim();
+            if (!val) alert('Please enter your college name');
+            return !!val;
+        }
+
+        function proceedToIndividualForm() {
+            if (!validateCollegeDetails()) return;
+            document.getElementById('individualSection').classList.remove('active');
+            document.getElementById('individualForm').classList.add('active');
+        }
+
+        function proceedToGroupForm() {
+            if (!validateCollegeDetails()) return;
+            sortedSelectedEvents = Array.from(selectedEvents).map(id => allEvents.find(e => e.id === id));
+            generateEventParticipantsForms();
+            currentEventIndex = -1;
+            showCurrentSection();
+            document.getElementById('groupSection').classList.remove('active');
+            document.getElementById('groupForm').classList.add('active');
+        }
+
+        function generateEventParticipantsForms() {
+            const container = document.getElementById('eventParticipantsContainer');
+            container.innerHTML = '';
+            sortedSelectedEvents.forEach(event => {
+                let fields = '';
+                for (let i = 1; i <= event.maxParticipants; i++) {
+                    fields += `<div class="participant-row"><div class="participant-title">Participant ${i}</div><div class="form-grid"><input type="text" class="form-input participant-name" placeholder="Name" required><input type="email" class="form-input participant-email" placeholder="Email" required><input type="tel" class="form-input participant-phone" placeholder="Phone" required></div></div>`;
+                }
+                const sec = document.createElement('div');
+                sec.className = 'event-participants-section';
+                sec.id = `event-section-${event.id}`;
+                sec.innerHTML = `<div class="event-header"><div class="event-title">${event.name}</div></div>${fields}`;
+                container.appendChild(sec);
+            });
+        }
+
+        function showCurrentSection() {
+            document.querySelectorAll('.event-participants-section').forEach(s => s.classList.remove('active'));
+            if (currentEventIndex === -1) {
+                document.getElementById('groupProgressIndicator').textContent = "Step 1: Team Leader";
+                document.getElementById('prevStepBtn').disabled = true;
+            } else {
+                document.getElementById(`event-section-${sortedSelectedEvents[currentEventIndex].id}`).classList.add('active');
+                document.getElementById('groupProgressIndicator').textContent = `Event ${currentEventIndex + 1} of ${sortedSelectedEvents.length}`;
+                document.getElementById('prevStepBtn').disabled = false;
+            }
+            document.getElementById('groupSubmitSection').style.display = (currentEventIndex === sortedSelectedEvents.length - 1) ? 'block' : 'none';
+            document.getElementById('nextStepBtn').disabled = (currentEventIndex === sortedSelectedEvents.length - 1);
+        }
+
+        function changeStep(dir) {
+            dir === 'next' ? currentEventIndex++ : currentEventIndex--;
+            showCurrentSection();
+        }
+
+        function generateRegistrationId() { return `YEN2026-${Math.floor(100000 + Math.random() * 900000)}`; }
+
+        async function submitIndividualRegistration() {
+            if (!document.getElementById('individualTerms').checked) return alert('Accept terms first');
+            const btn = document.getElementById('individualSubmitBtn');
+            btn.disabled = true; btn.textContent = "SENDING...";
+
+            const payload = {
+                registrationId: generateRegistrationId(),
+                collegeName: document.getElementById('collegeName').value,
+                type: 'individual',
+                participants: [{
+                    eventName: allEvents.find(e => e.id === individualSelectedEvent).name,
+                    name: document.getElementById('individualName').value,
+                    email: document.getElementById('individualEmail').value,
+                    phone: document.getElementById('individualPhone').value,
+                    isLead: true
+                }]
+            };
+
+            try {
+                const res = await fetch('http://127.0.0.1:5000/register', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                if (res.ok) {
+                    document.getElementById('registrationId').textContent = payload.registrationId;
+                    document.getElementById('individualForm').classList.remove('active');
+                    document.getElementById('confirmationMessage').classList.add('active');
+                } else alert("Registration failed.");
+            } catch (e) { alert("Server error"); } finally { btn.disabled = false; btn.textContent = "SUBMIT REGISTRATION"; }
+        }
+
+        async function submitGroupRegistration() {
+            if (!document.getElementById('groupTerms').checked) return alert('Accept terms first');
+            const btn = document.getElementById('groupSubmitBtn');
+            btn.disabled = true;
+
+            const list = [];
+
+            // 1. Get the Main Team Leader Details
+            const mainLead = {
+                eventName: "General Registration", // Mark as General or assign to first event
+                name: document.getElementById('teamLeaderName').value,
+                email: document.getElementById('teamLeaderEmail').value,
+                phone: document.getElementById('teamLeaderPhone').value,
+                isLead: true // ONLY this person gets true
+            };
+            list.push(mainLead);
+
+            // 2. Loop through all event participants
+            sortedSelectedEvents.forEach(event => {
+                const sec = document.getElementById(`event-section-${event.id}`);
+                const ns = sec.querySelectorAll('.participant-name');
+                const es = sec.querySelectorAll('.participant-email');
+                const ps = sec.querySelectorAll('.participant-phone');
+
+                ns.forEach((n, i) => {
+                    list.push({
+                        eventName: event.name,
+                        name: n.value,
+                        email: es[i].value,
+                        phone: ps[i].value,
+                        isLead: false // EVERYONE in the dynamic fields gets false
+                    });
+                });
+            });
+
+            const payload = {
+                registrationId: generateRegistrationId(),
+                collegeName: document.getElementById('collegeName').value,
+                type: 'group',
+                participants: list
+            };
+
+            try {
+                const res = await fetch('http://127.0.0.1:5000/register', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                if (res.ok) {
+                    document.getElementById('registrationId').textContent = payload.registrationId;
+                    document.getElementById('groupForm').classList.remove('active');
+                    document.getElementById('confirmationMessage').classList.add('active');
+                } else { alert("Registration failed."); }
+            } catch (e) { alert("Server offline"); } finally { btn.disabled = false; }
+        }
+    </script>
+    <script src="/js/components.js"></script>
+
+</body>
+
+</html>
