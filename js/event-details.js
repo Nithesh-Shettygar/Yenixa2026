@@ -149,18 +149,17 @@ const completeEventsData = {
             teamSize: "2",
             rounds: "4"
         },
-        about: "Test your intellect and strategic nerves in the Yenixa 2026 Quiz, a multi-stage battle ranging from fast-paced Kahoot heats to high-stakes bidding wars. Sharpen your wits for the final buzzer round where quick reflexes and precise knowledge determine who walks away with the grand cash prize.",
+        about: " Prepare to test your knowledge across timelines in ChronoQuest – A Journey Through Time, our General Quiz event. Travel through the Past, explore the Present, and imagine the Future as you face questions from history, science, technology, space, current affairs, films, sports, and general knowledge. Whether you are decoding historical mysteries, identifying iconic moments, or predicting future innovations, this is your chance to showcase your intellect, teamwork, and quiz mastery.",
         rules: [
             "Smart devices should be used only when allowed by the organizers.",
-            "Participants must bring a laptop or mobile phone.",
             "Proper discipline and good behavior must be maintained throughout the event.",
             "All equipment provided must be used carefully; any damage will lead to a penalty.",
             "The decisions of the judges and organizers will be final.",
 
         ],
         contacts: [
-            { role: "Dr Kiran Raveendarn(Student Coordinator)", phone: "+91 90371 32840" },
-            { role: "Ms Nubeera Thauseef (Student Coordinator)", phone: "+91 89717 28414" },
+            { role: "Dr Kiran Raveendarn(Faculty Coordinator)", phone: "+91 90371 32840" },
+            { role: "Ms Nubeera Thauseef (Faculty Coordinator)", phone: "+91 89717 28414" },
             { role: "Jishnu Gireesh(Student Coordinator)", phone: "77360 12427" },
             { role: "Sparsha(Student Coordinator)", phone: "73384 63723" },
         ],
@@ -405,7 +404,7 @@ const completeEventsData = {
             "Final Authority: All decisions made by the judges and event coordinators are final and binding.",
         ],
         contacts: [
-            { role: "Ms. Yuktha (Student Coordinator)", phone: " 8971545939" },
+            { role: "Ms. Yuktha (Faculty Coordinator)", phone: " 8971545939" },
             { role: "Haafizah(Student Coordinator)", phone: "94826 00351" },
             { role: "Vismaya(Student Coordinator)", phone: "62822 07727" }
         ],
