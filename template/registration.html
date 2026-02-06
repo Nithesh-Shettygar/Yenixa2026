@@ -13,6 +13,9 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Oxanium:wght@300;400;600;700&display=swap"
         rel="stylesheet">
+    
+                <link rel="icon" type="image/png" href="../assets/yenixa_logo_black.svg">
+
 
     <style>
         :root {
@@ -75,6 +78,137 @@
             border-radius: 4px;
         }
 
+        /* Popup Error System */
+        .error-popup {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 71, 87, 0.95);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 8px;
+            box-shadow: 0 5px 20px rgba(255, 71, 87, 0.3);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            max-width: 400px;
+            transform: translateX(150%);
+            transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            border-left: 4px solid #ff0000;
+        }
+
+        .error-popup.show {
+            transform: translateX(0);
+        }
+
+        .error-popup i {
+            font-size: 1.5rem;
+            min-width: 24px;
+        }
+
+        .error-popup-content {
+            flex: 1;
+        }
+
+        .error-popup-title {
+            font-weight: 700;
+            margin-bottom: 5px;
+            font-size: 1rem;
+        }
+
+        .error-popup-message {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .error-popup-close {
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 0;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: background 0.3s;
+        }
+
+        .error-popup-close:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Success Popup */
+        .success-popup {
+            background: rgba(46, 213, 115, 0.95) !important;
+            border-left-color: #00b894 !important;
+            box-shadow: 0 5px 20px rgba(46, 213, 115, 0.3) !important;
+        }
+
+        /* Warning Popup */
+        .warning-popup {
+            background: rgba(255, 172, 114, 0.95) !important;
+            border-left-color: #f39c12 !important;
+            box-shadow: 0 5px 20px rgba(255, 172, 114, 0.3) !important;
+        }
+
+        /* Info Popup */
+        .info-popup {
+            background: rgba(5, 208, 255, 0.95) !important;
+            border-left-color: #0984e3 !important;
+            box-shadow: 0 5px 20px rgba(5, 208, 255, 0.3) !important;
+        }
+
+        /* Field Error Styles */
+        .field-error {
+            border-color: #ff4757 !important;
+            background: rgba(255, 71, 87, 0.1) !important;
+            animation: shake 0.5s ease-in-out;
+        }
+
+        .field-error:focus {
+            box-shadow: 0 0 0 2px rgba(255, 71, 87, 0.3) !important;
+        }
+
+        .field-error-tooltip {
+            position: absolute;
+            bottom: -25px;
+            left: 0;
+            background: #ff4757;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            white-space: nowrap;
+            z-index: 100;
+        }
+
+        @keyframes shake {
+
+            0%,
+            100% {
+                transform: translateX(0);
+            }
+
+            10%,
+            30%,
+            50%,
+            70%,
+            90% {
+                transform: translateX(-5px);
+            }
+
+            20%,
+            40%,
+            60%,
+            80% {
+                transform: translateX(5px);
+            }
+        }
 
         .back-button {
             background: transparent;
@@ -106,6 +240,15 @@
             justify-content: center;
             margin-bottom: 40px;
             position: relative;
+            transition: opacity 0.3s, max-height 0.3s;
+            overflow: hidden;
+        }
+
+        .registration-toggle.hidden {
+            opacity: 0;
+            max-height: 0;
+            margin-bottom: 0;
+            pointer-events: none;
         }
 
         .toggle-container {
@@ -217,6 +360,7 @@
 
         .form-group {
             margin-bottom: 20px;
+            position: relative;
         }
 
         .form-label {
@@ -420,7 +564,7 @@
             margin-top: 5px;
         }
 
-        /* Participants Form Section */
+        /* Form Section */
         .form-section {
             background: var(--card-bg);
             backdrop-filter: blur(10px);
@@ -529,7 +673,7 @@
             border-radius: 10px;
         }
 
-        /* Event Participants Form Section - Updated for Navigation */
+        /* Event Participants Form Section */
         .event-participants-section {
             background: var(--card-bg);
             backdrop-filter: blur(10px);
@@ -744,114 +888,28 @@
             color: var(--vintage-brown) !important;
         }
 
-        /* Terms & Conditions */
-        .terms-section {
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 10px;
-            padding: 25px;
-            margin-top: 30px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .terms-title {
-            font-size: 1.3rem;
+        /* Back Button in Form Sections */
+        .back-to-events-btn {
+            background: var(--card-bg);
+            border: 2px solid var(--vintage-brown);
+            color: white;
+            padding: 10px 25px;
+            font-family: 'Oxanium', sans-serif;
+            font-size: 0.9rem;
             font-weight: 600;
-            margin-bottom: 15px;
-            color: var(--neon-blue);
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-radius: 8px;
+            margin-bottom: 20px;
         }
 
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .container {
-                padding: 80px 15px 30px;
-            }
-
-            .page-title {
-                font-size: 2rem;
-            }
-
-            .event-year {
-                font-size: 1.5rem;
-            }
-
-            .toggle-container {
-                width: 300px;
-            }
-
-            .toggle-option {
-                padding: 12px 20px;
-                font-size: 1rem;
-            }
-
-            .events-checkbox-grid {
-                grid-template-columns: 1fr;
-                max-height: 300px;
-            }
-
-            .submit-btn {
-                width: 90%;
-            }
-
-            .form-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .step-controls {
-                flex-direction: column;
-                gap: 15px;
-            }
-
-            .step-btn {
-                width: 100%;
-                min-width: unset;
-            }
-
-            .progress-indicator {
-                order: -1;
-                margin-bottom: 10px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .page-title {
-                font-size: 1.8rem;
-            }
-
-            .section-title {
-                font-size: 1.5rem;
-            }
-
-            .toggle-container {
-                width: 280px;
-            }
-
-            .toggle-option {
-                padding: 10px 15px;
-                font-size: 0.9rem;
-            }
-
-            .toggle-option i {
-                margin-right: 5px;
-                font-size: 1rem;
-            }
-
-            .submit-btn {
-                padding: 16px 30px;
-                font-size: 1.1rem;
-            }
-        }
-
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .back-to-events-btn:hover {
+            background: rgba(255, 172, 114, 0.1);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 172, 114, 0.3);
         }
 
         /* Ensure fonts are available within the component */
@@ -872,7 +930,6 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            /* Pushes content to opposite sides */
             padding: 0 30px;
             z-index: 9999;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
@@ -899,7 +956,6 @@
             cursor: pointer;
             transition: all 0.3s ease;
             text-decoration: none;
-            /* For link styling */
         }
 
         .nav-btn:hover {
@@ -922,23 +978,11 @@
             -webkit-text-fill-color: transparent;
         }
 
-        @media (max-width: 768px) {
-            .yenixa-navbar {
-                padding: 0 15px;
-                height: 60px;
-            }
-
-            .nav-title {
-                font-size: 1.1rem;
-                letter-spacing: 1.5px;
-            }
-        }
-
         /* Footer Styles */
         .site-footer {
             background: linear-gradient(135deg,
-                    rgba(255, 172, 114, 0.9) 0%,
-                    rgba(5, 208, 255, 0.9) 100%);
+                    rgba(255, 172, 114) 0%,
+                    rgba(5, 208, 255) 100%);
             color: #0a0a0a;
             padding: 60px 40px 20px;
             position: relative;
@@ -1050,8 +1094,81 @@
             font-family: 'Oxanium-VariableFont_wght', 'Oxanium', sans-serif;
         }
 
-        /* Mobile Responsiveness */
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
         @media (max-width: 768px) {
+            .container {
+                padding: 80px 15px 30px;
+            }
+
+            .page-title {
+                font-size: 2rem;
+            }
+
+            .event-year {
+                font-size: 1.5rem;
+            }
+
+            .toggle-container {
+                width: 300px;
+            }
+
+            .toggle-option {
+                padding: 12px 20px;
+                font-size: 1rem;
+            }
+
+            .events-checkbox-grid {
+                grid-template-columns: 1fr;
+                max-height: 300px;
+            }
+
+            .submit-btn {
+                width: 90%;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .step-controls {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .step-btn {
+                width: 100%;
+                min-width: unset;
+            }
+
+            .progress-indicator {
+                order: -1;
+                margin-bottom: 10px;
+            }
+
+            .yenixa-navbar {
+                padding: 0 15px;
+                height: 60px;
+            }
+
+            .nav-title {
+                font-size: 1.1rem;
+                letter-spacing: 1.5px;
+            }
+
+            /* Mobile Responsiveness for Footer */
             .site-footer {
                 padding: 40px 20px 15px;
             }
@@ -1084,9 +1201,44 @@
             .footer-logo img {
                 height: 70px;
             }
+
+            /* Popup adjustments for mobile */
+            .error-popup {
+                top: 10px;
+                right: 10px;
+                left: 10px;
+                max-width: none;
+            }
         }
 
         @media (max-width: 480px) {
+            .page-title {
+                font-size: 1.8rem;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            .toggle-container {
+                width: 280px;
+            }
+
+            .toggle-option {
+                padding: 10px 15px;
+                font-size: 0.9rem;
+            }
+
+            .toggle-option i {
+                margin-right: 5px;
+                font-size: 1rem;
+            }
+
+            .submit-btn {
+                padding: 16px 30px;
+                font-size: 1.1rem;
+            }
+
             .site-footer {
                 padding: 30px 15px 10px;
             }
@@ -1123,14 +1275,13 @@
 </head>
 
 <body>
-
+    <!-- Popup Container -->
+    <div id="popupContainer"></div>
 
     <!-- Video Background -->
     <video autoplay muted loop id="bgVideo">
         <source src="../assets/videos/bg2_video.mp4" type="video/mp4">
     </video>
-
-
 
     <nav class="yenixa-navbar">
         <div class="nav-left">
@@ -1156,7 +1307,7 @@
         </div>
 
         <!-- Registration Type Toggle -->
-        <div class="registration-toggle">
+        <div class="registration-toggle" id="registrationToggle">
             <div class="toggle-container">
                 <div class="toggle-slider" id="toggleSlider"></div>
                 <div class="toggle-option active" onclick="selectRegistrationType('individual')">
@@ -1219,8 +1370,8 @@
                 <i class="fas fa-exclamation-triangle"></i>
                 <div class="info-text">
                     <span class="highlight">For Championship Qualification:</span> Minimum 9 events required with either
-                    <span class="highlight">The Eternal Ascendant (Best Manager)</span> or <span class="highlight">Red
-                        Alert404 (IT Manager)</span> compulsory.
+                    <span class="highlight">The Eternal Ascendant (Best Manager)</span> or <span class="highlight">
+                        Tech Tycoon(IT Manager)</span> compulsory.
                 </div>
             </div>
 
@@ -1246,68 +1397,50 @@
             </button>
         </div>
 
-        <!-- Individual Form Section -->
+        <!-- Individual Form Section - Updated to match group registration structure -->
         <div id="individualForm" class="form-section">
+            <button class="back-to-events-btn" onclick="goBackToIndividualEvents()">
+                <i class="fas fa-arrow-left"></i> Back to Events
+            </button>
+
             <div class="form-header">
-                <h2 class="section-title">Participant Details</h2>
+                <h2 class="section-title">Individual Registration</h2>
                 <div class="selected-event-info" id="individualEventInfo"></div>
             </div>
 
-            <div class="participant-row">
-                <div class="participant-header">
-                    <div class="participant-title">Participant 1</div>
-                    <div class="participant-number">Individual Registration</div>
-                </div>
-
-                <div class="form-grid">
-                    <div class="form-group">
-                        <label class="form-label">Full Name <span class="required">*</span></label>
-                        <input type="text" class="form-input" id="individualName" placeholder="Enter your full name"
-                            required>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="form-label">Email <span class="required">*</span></label>
-                        <input type="email" class="form-input" id="individualEmail"
-                            placeholder="Enter your email address" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="form-label">Phone Number <span class="required">*</span></label>
-                        <input type="tel" class="form-input" id="individualPhone"
-                            placeholder="Enter your 10-digit mobile number" pattern="[0-9]{10}" required>
-                    </div>
-                </div>
+            <!-- Event Header -->
+            <div class="event-header">
+                <div class="event-title" id="individualEventTitle"></div>
+                <div class="event-participant-count" id="individualParticipantCount"></div>
             </div>
 
-            <div class="terms-section">
-                <div class="terms-title">Terms & Conditions</div>
-                <div style="margin-bottom: 15px; color: rgba(255, 255, 255, 0.8); line-height: 1.6;">
-                    By registering for YENIXA 2026, you agree to abide by all event rules and regulations. All
-                    information provided must be accurate. The organizing committee reserves the right to disqualify any
-                    participant for misconduct or violation of rules.
-                </div>
+            <!-- Participants Container (will be populated dynamically) -->
+            <div id="individualParticipantsContainer"></div>
 
-                <label class="checkbox-container" style="display: block;">
-                    <input type="checkbox" class="checkbox-input" id="individualTerms" required>
-                    <span class="checkbox-custom"></span>
-                    <span class="checkbox-label">
-                        I agree to the terms and conditions of YENIXA 2026 and confirm that all information provided is
-                        accurate.
-                    </span>
-                </label>
+            <!-- Step Controls (for consistency with group, but simplified) -->
+            <center>
+            <div class="step-controls">
+                <!-- <button class="step-btn" onclick="goBackToIndividualEvents()">
+                    <i class="fas fa-chevron-left"></i> Back to Events
+                </button> -->
+
+
+
+                <button class="step-btn" onclick="submitIndividualRegistration()" id="individualSubmitBtn">
+                    Submit Registration <i class="fas fa-chevron-right"></i>
+                </button>
             </div>
-
-            <button class="submit-btn" onclick="submitIndividualRegistration()" id="individualSubmitBtn">
-                SUBMIT REGISTRATION
-            </button>
+            </center>
         </div>
 
         <!-- Group Form Section - Updated with Team Leader Section -->
         <div id="groupForm" class="form-section">
+            <button class="back-to-events-btn" onclick="goBackToGroupEvents()">
+                <i class="fas fa-arrow-left"></i> Back to Events
+            </button>
+
             <div class="form-header">
                 <h2 class="section-title">Team Registration</h2>
-
             </div>
 
             <!-- Team Leader Section -->
@@ -1353,24 +1486,6 @@
 
             <!-- Submit Button will be added here after all events -->
             <div id="groupSubmitSection" style="display: none;">
-                <div class="terms-section">
-                    <div class="terms-title">Terms & Conditions</div>
-                    <div style="margin-bottom: 15px; color: rgba(255, 255, 255, 0.8); line-height: 1.6;">
-                        By registering for YENIXA 2026, you agree to abide by all event rules and regulations. All
-                        information provided must be accurate. The organizing committee reserves the right to disqualify
-                        any participant for misconduct or violation of rules.
-                    </div>
-
-                    <label class="checkbox-container" style="display: block;">
-                        <input type="checkbox" class="checkbox-input" id="groupTerms" required>
-                        <span class="checkbox-custom"></span>
-                        <span class="checkbox-label">
-                            I agree to the terms and conditions of YENIXA 2026 and confirm that all information provided
-                            is accurate.
-                        </span>
-                    </label>
-                </div>
-
                 <button class="submit-btn" onclick="submitGroupRegistration()" id="groupSubmitBtn">
                     SUBMIT TEAM REGISTRATION
                 </button>
@@ -1387,21 +1502,16 @@
                 Your registration for YENIXA 2026 has been successfully submitted. You will receive a confirmation email
                 shortly.
             </p>
-            <p class="confirmation-text">
-                Registration ID: <span id="registrationId"
-                    style="color: var(--neon-blue); font-weight: bold;">YEN2026-001</span>
-            </p>
-            <button class="submit-btn" onclick="window.location.href='/'">
+            <button class="submit-btn" onclick="window.location.href='../index.html'">
                 RETURN TO HOME
             </button>
         </div>
     </div>
 
-    <script src="/js/components.js"></script>
     <footer class="site-footer">
         <div class="footer-main">
             <div class="footer-logo">
-                <img src="../assets/yenepoya_logo.webp" alt="Yenepoya Institute Logo">
+                <img src="../assets/yenepoya_logo.svg" alt="Yenepoya Institute Logo">
             </div>
             <div class="footer-text-content">
                 <p>Yenepoya (Deemed to be University) brings you a world-class educational experience in the pristine
@@ -1431,22 +1541,22 @@
     <script>
         // 1. Events Data
         const allEvents = [
-            { id: 1, name: "The Midnight Equation", thematic: "Mystery Case Solving", participants: "Team (2)", maxParticipants: 2 },
-            { id: 2, name: "Chrono Couture", thematic: "Face Painting and Ramp Walk", participants: "Team (2)", maxParticipants: 2 },
-            { id: 3, name: "Chronopreneur", thematic: "Team Entrepreneurship", participants: "Team (2-3)", maxParticipants: 3 },
-            { id: 4, name: "Rift in Reality", thematic: "Web Development", participants: "Team (2)", maxParticipants: 2 },
-            { id: 5, name: "Soul in Focus", thematic: "Photography Challenge", participants: "Solo", maxParticipants: 1 },
-            { id: 6, name: "Fireless Flavors in Time", thematic: "Cooking Without Fire", participants: "Team (3)", maxParticipants: 3 },
-            { id: 7, name: "Nexus Odyssey", thematic: "Marketing", participants: "Team (2)", maxParticipants: 2 },
-            { id: 8, name: "TimeShift", thematic: "League of Legends", participants: "Team (2)", maxParticipants: 2 },
-            { id: 9, name: "Renewed from Ruins", thematic: "Best from Waste", participants: "Team (2)", maxParticipants: 2 },
-            { id: 10, name: "TimeLoop", thematic: "Coding", participants: "Team (2)", maxParticipants: 2 },
-            { id: 11, name: "The Eternal Ascendant", thematic: "Best Manager", participants: "Solo", maxParticipants: 1 },
-            { id: 12, name: "The Human Epix", thematic: "HR", participants: "Team (2)", maxParticipants: 2 },
-            { id: 13, name: "Palimpsest", thematic: "Mockpress", participants: "Solo", maxParticipants: 1 },
-            { id: 14, name: "Capital Paradox", thematic: "Finance", participants: "Team (2)", maxParticipants: 2 },
-            { id: 15, name: "ChronoQuest", thematic: "Quiz", participants: "Team (2)", maxParticipants: 2 },
-            { id: 16, name: "Red Alert404", thematic: "IT Manager", participants: "Team (2)", maxParticipants: 2 },
+            { id: 1, name: "The Eternal Ascendant", thematic: "Best Manager", participants: "Solo", maxParticipants: 1 },
+            { id: 2, name: "Tech Tycoon", thematic: "IT Manager", participants: "Solo", maxParticipants: 1 },
+            { id: 3, name: "The Midnight Equation", thematic: "Mystery Case", participants: "Team (2)", maxParticipants: 2 },
+            { id: 4, name: "Chrono Couture", thematic: "Face Painting & Ramp Walk", participants: "Team (2)", maxParticipants: 2 },
+            { id: 5, name: "Chronopreneur", thematic: "Team Entrepreneurship", participants: "Team (2)", maxParticipants: 2 },
+            { id: 6, name: "Rift in Reality", thematic: "Web Development", participants: "Team (2)", maxParticipants: 2 },
+            { id: 7, name: "Soul in Focus", thematic: "Photography Challenge", participants: "Solo", maxParticipants: 1 },
+            { id: 8, name: "Fireless Flavors in Time", thematic: "Cooking Without Fire", participants: "Team (3)", maxParticipants: 3 },
+            { id: 9, name: "Nexus Odyssey", thematic: "Marketing", participants: "Team (2)", maxParticipants: 2 },
+            { id: 10, name: "TimeShift", thematic: "Surprise Event", participants: "Team (2)", maxParticipants: 2 },
+            { id: 11, name: "Renewed from Ruins", thematic: "Best from Waste", participants: "Team (2)", maxParticipants: 2 },
+            { id: 12, name: "TimeLoop", thematic: "Coding", participants: "Team (2)", maxParticipants: 2 },
+            { id: 13, name: "The Human Epix", thematic: "HR", participants: "Team (2)", maxParticipants: 2 },
+            { id: 14, name: "Palimpsest", thematic: "Mockpress", participants: "Solo", maxParticipants: 1 },
+            { id: 15, name: "Capital Paradox", thematic: "Finance", participants: "Team (2)", maxParticipants: 2 },
+            { id: 16, name: "ChronoQuest", thematic: "Quiz", participants: "Team (2)", maxParticipants: 2 },
             { id: 17, name: "Re-Coded Bits", thematic: "E-Sports", participants: "Team (2)", maxParticipants: 2 }
         ];
 
@@ -1455,11 +1565,84 @@
         let individualSelectedEvent = null;
         let currentEventIndex = -1;
         let sortedSelectedEvents = [];
+        let registrationCounter = 1;
 
         document.addEventListener('DOMContentLoaded', () => {
             renderEvents();
             document.getElementById('individualSection').classList.add('active');
         });
+
+        // Popup Management Functions
+        function showPopup(type, title, message, duration = 5000) {
+            const popupContainer = document.getElementById('popupContainer');
+
+            // Create popup element
+            const popup = document.createElement('div');
+            popup.className = `error-popup ${type}-popup`;
+
+            // Set icon based on type
+            let icon = 'fa-exclamation-circle';
+            if (type === 'success') icon = 'fa-check-circle';
+            if (type === 'warning') icon = 'fa-exclamation-triangle';
+            if (type === 'info') icon = 'fa-info-circle';
+
+            popup.innerHTML = `
+                <i class="fas ${icon}"></i>
+                <div class="error-popup-content">
+                    <div class="error-popup-title">${title}</div>
+                    <div class="error-popup-message">${message}</div>
+                </div>
+                <button class="error-popup-close" onclick="this.parentElement.remove()">
+                    <i class="fas fa-times"></i>
+                </button>
+            `;
+
+            // Add to container
+            popupContainer.appendChild(popup);
+
+            // Trigger animation
+            setTimeout(() => popup.classList.add('show'), 10);
+
+            // Auto remove after duration
+            setTimeout(() => {
+                if (popup.parentElement) {
+                    popup.classList.remove('show');
+                    setTimeout(() => popup.remove(), 400);
+                }
+            }, duration);
+
+            return popup;
+        }
+
+        // Field-specific error highlighting
+        function showFieldError(field, message) {
+            // Remove any existing error highlight
+            field.classList.remove('field-error');
+
+            // Add error class
+            field.classList.add('field-error');
+
+            // Add error message tooltip
+            let tooltip = field.parentElement.querySelector('.field-error-tooltip');
+            if (!tooltip) {
+                tooltip = document.createElement('div');
+                tooltip.className = 'field-error-tooltip';
+                field.parentElement.appendChild(tooltip);
+            }
+            tooltip.textContent = message;
+
+            // Focus the field
+            field.focus();
+
+            // Remove error highlight after correction
+            field.addEventListener('input', function clearError() {
+                this.classList.remove('field-error');
+                if (tooltip && tooltip.parentElement) {
+                    tooltip.remove();
+                }
+                this.removeEventListener('input', clearError);
+            });
+        }
 
         function selectRegistrationType(type) {
             registrationType = type;
@@ -1518,24 +1701,175 @@
 
         function updateChampionshipWarning() {
             const count = selectedEvents.size;
-            const hasComp = Array.from(selectedEvents).some(id => [11, 16].includes(id));
+            const hasComp = Array.from(selectedEvents).some(id => [1, 2].includes(id)); // IDs 1 and 2 are the compulsory events
             document.getElementById('championshipWarning').style.display = (count > 0 && (count < 9 || !hasComp)) ? 'flex' : 'none';
         }
 
         function validateCollegeDetails() {
-            const val = document.getElementById('collegeName').value.trim();
-            if (!val) alert('Please enter your college name');
-            return !!val;
+            const collegeName = document.getElementById('collegeName').value.trim();
+
+            if (!collegeName) {
+                showPopup('error', 'College Name Required', 'Please enter your college name before proceeding.');
+
+                const field = document.getElementById('collegeName');
+                showFieldError(field, 'College name is required');
+
+                return false;
+            }
+
+            if (collegeName.length < 2) {
+                showPopup('error', 'Invalid College Name', 'Please enter a valid college name.');
+
+                const field = document.getElementById('collegeName');
+                showFieldError(field, 'Enter a valid college name');
+
+                return false;
+            }
+
+            return true;
         }
 
         function proceedToIndividualForm() {
             if (!validateCollegeDetails()) return;
+            if (!individualSelectedEvent) {
+                showPopup('error', 'No Event Selected', 'Please select an event first');
+                return;
+            }
+
+            // Hide registration toggle
+            document.getElementById('registrationToggle').classList.add('hidden');
             document.getElementById('individualSection').classList.remove('active');
+
+            // Get the selected event
+            const event = allEvents.find(e => e.id === individualSelectedEvent);
+
+            // Set event info
+            document.getElementById('individualEventTitle').textContent = event.name;
+            document.getElementById('individualParticipantCount').textContent =
+                event.maxParticipants === 1 ? 'Solo Event' : `${event.maxParticipants} Participants`;
+
+            // Generate participant forms
+            const container = document.getElementById('individualParticipantsContainer');
+            container.innerHTML = '';
+
+            // Create a participant section for each required participant
+            for (let i = 1; i <= event.maxParticipants; i++) {
+                const section = document.createElement('div');
+                section.className = 'participant-row';
+                section.innerHTML = `
+                    <div class="participant-header">
+                        <div class="participant-title">Participant ${i}</div>
+                        <div class="participant-number">${i === 1 ? 'Main Participant' : 'Additional Participant'}</div>
+                    </div>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label class="form-label">Full Name <span class="required">*</span></label>
+                            <input type="text" class="form-input participant-name" 
+                                   id="ind-name-${i}"
+                                   placeholder="Enter full name" 
+                                   data-index="${i}" 
+                                   required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Email <span class="required">*</span></label>
+                            <input type="email" class="form-input participant-email" 
+                                   id="ind-email-${i}"
+                                   placeholder="Enter email address" 
+                                   data-index="${i}" 
+                                   required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Phone Number <span class="required">*</span></label>
+                            <input type="tel" class="form-input participant-phone" 
+                                   id="ind-phone-${i}"
+                                   placeholder="Enter 10-digit mobile number" 
+                                   pattern="[0-9]{10}" 
+                                   data-index="${i}" 
+                                   required>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(section);
+            }
+
+            // Show the individual form
             document.getElementById('individualForm').classList.add('active');
+        }
+
+        function validateIndividualForm() {
+            const nameInputs = document.querySelectorAll('#individualParticipantsContainer .participant-name');
+            const emailInputs = document.querySelectorAll('#individualParticipantsContainer .participant-email');
+            const phoneInputs = document.querySelectorAll('#individualParticipantsContainer .participant-phone');
+
+            // Check if all fields are filled
+            for (let i = 0; i < nameInputs.length; i++) {
+                const participantNum = i + 1;
+
+                // Check name
+                if (!nameInputs[i].value.trim()) {
+                    showPopup('error', 'Name Required', `Please enter name for Participant ${participantNum}`);
+                    showFieldError(nameInputs[i], 'Name is required');
+                    return false;
+                }
+
+                // Check email
+                if (!emailInputs[i].value.trim()) {
+                    showPopup('error', 'Email Required', `Please enter email for Participant ${participantNum}`);
+                    showFieldError(emailInputs[i], 'Email is required');
+                    return false;
+                }
+
+                // Validate email format
+                const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailPattern.test(emailInputs[i].value.trim())) {
+                    showPopup('error', 'Invalid Email', `Please enter a valid email address for Participant ${participantNum}`);
+                    showFieldError(emailInputs[i], 'Enter valid email address');
+                    return false;
+                }
+
+                // Check phone
+                if (!phoneInputs[i].value.trim()) {
+                    showPopup('error', 'Phone Required', `Please enter phone number for Participant ${participantNum}`);
+                    showFieldError(phoneInputs[i], 'Phone number is required');
+                    return false;
+                }
+
+                // Validate phone number format
+                const phonePattern = /^[0-9]{10}$/;
+                if (!phonePattern.test(phoneInputs[i].value.trim())) {
+                    showPopup('error', 'Invalid Phone Number', `Please enter a valid 10-digit phone number for Participant ${participantNum}`);
+                    showFieldError(phoneInputs[i], 'Must be 10 digits');
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        // Back button functions
+        function goBackToIndividualEvents() {
+            document.getElementById('registrationToggle').classList.remove('hidden');
+            document.getElementById('individualForm').classList.remove('active');
+            document.getElementById('individualSection').classList.add('active');
+        }
+
+        function goBackToGroupEvents() {
+            document.getElementById('registrationToggle').classList.remove('hidden');
+            document.getElementById('groupForm').classList.remove('active');
+            document.getElementById('groupSection').classList.add('active');
         }
 
         function proceedToGroupForm() {
             if (!validateCollegeDetails()) return;
+
+            if (selectedEvents.size === 0) {
+                showPopup('error', 'No Events Selected', 'Please select at least one event for team registration');
+                return;
+            }
+
+            // Hide registration toggle
+            document.getElementById('registrationToggle').classList.add('hidden');
+
             sortedSelectedEvents = Array.from(selectedEvents).map(id => allEvents.find(e => e.id === id));
             generateEventParticipantsForms();
             currentEventIndex = -1;
@@ -1550,12 +1884,39 @@
             sortedSelectedEvents.forEach(event => {
                 let fields = '';
                 for (let i = 1; i <= event.maxParticipants; i++) {
-                    fields += `<div class="participant-row"><div class="participant-title">Participant ${i}</div><div class="form-grid"><input type="text" class="form-input participant-name" placeholder="Name" required><input type="email" class="form-input participant-email" placeholder="Email" required><input type="tel" class="form-input participant-phone" placeholder="Phone" required></div></div>`;
+                    fields += `
+                    <div class="participant-row">
+                        <div class="participant-header">
+                            <div class="participant-title">Participant ${i}</div>
+                            <div class="participant-number">${i === 1 ? 'Event Lead' : 'Team Member'}</div>
+                        </div>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label class="form-label">Full Name <span class="required">*</span></label>
+                                <input type="text" class="form-input participant-name" 
+                                       placeholder="Enter full name" 
+                                       required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Email <span class="required">*</span></label>
+                                <input type="email" class="form-input participant-email" 
+                                       placeholder="Enter email address" 
+                                       required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Phone Number <span class="required">*</span></label>
+                                <input type="tel" class="form-input participant-phone" 
+                                       placeholder="Enter 10-digit mobile number" 
+                                       pattern="[0-9]{10}" 
+                                       required>
+                            </div>
+                        </div>
+                    </div>`;
                 }
                 const sec = document.createElement('div');
                 sec.className = 'event-participants-section';
                 sec.id = `event-section-${event.id}`;
-                sec.innerHTML = `<div class="event-header"><div class="event-title">${event.name}</div></div>${fields}`;
+                sec.innerHTML = `<div class="event-header"><div class="event-title">${event.name}</div><div class="event-participant-count">${event.maxParticipants} Participants</div></div>${fields}`;
                 container.appendChild(sec);
             });
         }
@@ -1579,25 +1940,48 @@
             showCurrentSection();
         }
 
-        function generateRegistrationId() { return `YEN2026-${Math.floor(100000 + Math.random() * 900000)}`; }
+        function generateRegistrationId() {
+            const id = `yenixa2026-${String(registrationCounter).padStart(3, '0')}`;
+            registrationCounter++;
+            return id;
+        }
 
         async function submitIndividualRegistration() {
-            if (!document.getElementById('individualTerms').checked) return alert('Accept terms first');
+            if (!validateIndividualForm()) return;
+
             const btn = document.getElementById('individualSubmitBtn');
-            btn.disabled = true; btn.textContent = "SENDING...";
+            const event = allEvents.find(e => e.id === individualSelectedEvent);
+
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
+
+            // Collect participant data
+            const participants = [];
+            const nameInputs = document.querySelectorAll('#individualParticipantsContainer .participant-name');
+            const emailInputs = document.querySelectorAll('#individualParticipantsContainer .participant-email');
+            const phoneInputs = document.querySelectorAll('#individualParticipantsContainer .participant-phone');
+
+            for (let i = 0; i < nameInputs.length; i++) {
+                participants.push({
+                    name: nameInputs[i].value.trim(),
+                    email: emailInputs[i].value.trim(),
+                    phone: phoneInputs[i].value.trim(),
+                    isLead: i === 0,
+                    eventName: event.name  // Add event name to each participant
+                });
+            }
 
             const payload = {
                 registrationId: generateRegistrationId(),
-                collegeName: document.getElementById('collegeName').value,
+                collegeName: document.getElementById('collegeName').value.trim(),
                 type: 'individual',
-                participants: [{
-                    eventName: allEvents.find(e => e.id === individualSelectedEvent).name,
-                    name: document.getElementById('individualName').value,
-                    email: document.getElementById('individualEmail').value,
-                    phone: document.getElementById('individualPhone').value,
-                    isLead: true
-                }]
+                eventId: individualSelectedEvent,
+                eventName: event.name,  // Keep event name at top level too
+                participants: participants,
+                registrationDate: new Date().toISOString()
             };
+
+            console.log("Sending registration data:", payload);
 
             try {
                 const res = await fetch('http://127.0.0.1:5000/register', {
@@ -1605,28 +1989,144 @@
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(payload)
                 });
+
+                const responseData = await res.json();
+
                 if (res.ok) {
-                    document.getElementById('registrationId').textContent = payload.registrationId;
+                    showPopup('success', 'Registration Successful!',
+                        `You have successfully registered for "${event.name}". Confirmation email has been sent.`);
+
+                    // Hide all other sections
+                    document.getElementById('collegeSection').style.display = 'none';
                     document.getElementById('individualForm').classList.remove('active');
+
+                    // Show confirmation section
                     document.getElementById('confirmationMessage').classList.add('active');
-                } else alert("Registration failed.");
-            } catch (e) { alert("Server error"); } finally { btn.disabled = false; btn.textContent = "SUBMIT REGISTRATION"; }
+                    document.getElementById('registrationId').textContent = payload.registrationId;
+                    document.getElementById('confirmationText').textContent =
+                        `Your registration for "${event.name}" has been successfully submitted. You will receive a confirmation email shortly.`;
+                } else {
+                    showPopup('error', 'Registration Failed',
+                        responseData.error || 'Unable to complete registration. Please try again.');
+                }
+            } catch (error) {
+                // console.error('Registration error:', error);
+                // showPopup('error', 'Connection Error',
+                //     'Unable to connect to server. Please check your internet connection and try again.');
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = 'Submit Registration <i class="fas fa-chevron-right"></i>';
+            }
+        }
+
+        function validateGroupForm() {
+            // Validate team leader
+            const teamLeaderName = document.getElementById('teamLeaderName').value.trim();
+            const teamLeaderEmail = document.getElementById('teamLeaderEmail').value.trim();
+            const teamLeaderPhone = document.getElementById('teamLeaderPhone').value.trim();
+
+            if (!teamLeaderName) {
+                showPopup('error', 'Team Leader Name Required', 'Please enter team leader name');
+                showFieldError(document.getElementById('teamLeaderName'), 'Team leader name is required');
+                return false;
+            }
+
+            if (!teamLeaderEmail) {
+                showPopup('error', 'Team Leader Email Required', 'Please enter team leader email');
+                showFieldError(document.getElementById('teamLeaderEmail'), 'Team leader email is required');
+                return false;
+            }
+
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailPattern.test(teamLeaderEmail)) {
+                showPopup('error', 'Invalid Team Leader Email', 'Please enter a valid email address');
+                showFieldError(document.getElementById('teamLeaderEmail'), 'Enter valid email address');
+                return false;
+            }
+
+            if (!teamLeaderPhone) {
+                showPopup('error', 'Team Leader Phone Required', 'Please enter team leader phone number');
+                showFieldError(document.getElementById('teamLeaderPhone'), 'Team leader phone is required');
+                return false;
+            }
+
+            const phonePattern = /^[0-9]{10}$/;
+            if (!phonePattern.test(teamLeaderPhone)) {
+                showPopup('error', 'Invalid Team Leader Phone', 'Please enter a valid 10-digit phone number');
+                showFieldError(document.getElementById('teamLeaderPhone'), 'Must be 10 digits');
+                return false;
+            }
+
+            // Validate all event participants
+            let eventIndex = 0;
+            for (const event of sortedSelectedEvents) {
+                const section = document.getElementById(`event-section-${event.id}`);
+                if (!section) continue;
+
+                const nameInputs = section.querySelectorAll('.participant-name');
+                const emailInputs = section.querySelectorAll('.participant-email');
+                const phoneInputs = section.querySelectorAll('.participant-phone');
+
+                for (let i = 0; i < nameInputs.length; i++) {
+                    const participantNum = i + 1;
+
+                    if (!nameInputs[i].value.trim()) {
+                        showPopup('error', 'Participant Name Required',
+                            `Please enter name for Participant ${participantNum} in "${event.name}"`);
+                        showFieldError(nameInputs[i], 'Name is required');
+                        return false;
+                    }
+
+                    if (!emailInputs[i].value.trim()) {
+                        showPopup('error', 'Participant Email Required',
+                            `Please enter email for Participant ${participantNum} in "${event.name}"`);
+                        showFieldError(emailInputs[i], 'Email is required');
+                        return false;
+                    }
+
+                    if (!emailPattern.test(emailInputs[i].value.trim())) {
+                        showPopup('error', 'Invalid Email',
+                            `Please enter a valid email for Participant ${participantNum} in "${event.name}"`);
+                        showFieldError(emailInputs[i], 'Enter valid email');
+                        return false;
+                    }
+
+                    if (!phoneInputs[i].value.trim()) {
+                        showPopup('error', 'Participant Phone Required',
+                            `Please enter phone for Participant ${participantNum} in "${event.name}"`);
+                        showFieldError(phoneInputs[i], 'Phone is required');
+                        return false;
+                    }
+
+                    if (!phonePattern.test(phoneInputs[i].value.trim())) {
+                        showPopup('error', 'Invalid Phone Number',
+                            `Please enter a valid 10-digit phone number for Participant ${participantNum} in "${event.name}"`);
+                        showFieldError(phoneInputs[i], 'Must be 10 digits');
+                        return false;
+                    }
+                }
+                eventIndex++;
+            }
+
+            return true;
         }
 
         async function submitGroupRegistration() {
-            if (!document.getElementById('groupTerms').checked) return alert('Accept terms first');
+            if (!validateGroupForm()) return;
+
             const btn = document.getElementById('groupSubmitBtn');
             btn.disabled = true;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
 
             const list = [];
 
             // 1. Get the Main Team Leader Details
             const mainLead = {
-                eventName: "General Registration", // Mark as General or assign to first event
-                name: document.getElementById('teamLeaderName').value,
-                email: document.getElementById('teamLeaderEmail').value,
-                phone: document.getElementById('teamLeaderPhone').value,
-                isLead: true // ONLY this person gets true
+                eventName: "General Registration",
+                name: document.getElementById('teamLeaderName').value.trim(),
+                email: document.getElementById('teamLeaderEmail').value.trim(),
+                phone: document.getElementById('teamLeaderPhone').value.trim(),
+                isLead: true
             };
             list.push(mainLead);
 
@@ -1640,20 +2140,23 @@
                 ns.forEach((n, i) => {
                     list.push({
                         eventName: event.name,
-                        name: n.value,
-                        email: es[i].value,
-                        phone: ps[i].value,
-                        isLead: false // EVERYONE in the dynamic fields gets false
+                        name: n.value.trim(),
+                        email: es[i].value.trim(),
+                        phone: ps[i].value.trim(),
+                        isLead: false
                     });
                 });
             });
 
             const payload = {
                 registrationId: generateRegistrationId(),
-                collegeName: document.getElementById('collegeName').value,
+                collegeName: document.getElementById('collegeName').value.trim(),
                 type: 'group',
+                totalEvents: sortedSelectedEvents.length,
                 participants: list
             };
+
+            console.log("Sending group registration data:", payload);
 
             try {
                 const res = await fetch('http://127.0.0.1:5000/register', {
@@ -1661,16 +2164,37 @@
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(payload)
                 });
+
+                const responseData = await res.json();
+
                 if (res.ok) {
-                    document.getElementById('registrationId').textContent = payload.registrationId;
+                    showPopup('success', 'Team Registration Successful!',
+                        `Your team has been registered for ${sortedSelectedEvents.length} events. Confirmation email has been sent.`);
+
+                    // Hide all other sections
+                    document.getElementById('collegeSection').style.display = 'none';
                     document.getElementById('groupForm').classList.remove('active');
+
+                    // Show confirmation
                     document.getElementById('confirmationMessage').classList.add('active');
-                } else { alert("Registration failed."); }
-            } catch (e) { alert("Server offline"); } finally { btn.disabled = false; }
+                    document.getElementById('registrationId').textContent = payload.registrationId;
+
+                    document.getElementById('confirmationText').textContent =
+                        `Your team registration for ${sortedSelectedEvents.length} events has been successfully submitted. You will receive a confirmation email shortly.`;
+                } else {
+                    showPopup('error', 'Registration Failed',
+                        responseData.error || 'Unable to complete registration. Please try again.');
+                }
+            } catch (error) {
+                // console.error('Registration error:', error);
+                // showPopup('error', 'Connection Error',
+                //     'Unable to connect to server. Please check your internet connection and try again.');
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = 'Submit Team Registration';
+            }
         }
     </script>
-    <script src="/js/components.js"></script>
-
 </body>
 
 </html>

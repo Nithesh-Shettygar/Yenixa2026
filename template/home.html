@@ -14,6 +14,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Oxanium:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
+        <link rel="icon" type="image/png" href="../assets/yenixa_logo_black.svg">
 </head>
 
 <body>
@@ -32,22 +33,49 @@
 
     <section class="landing">
         <div class="logo-container">
-            <div class="logo logo-1">
-                <img src="../assets/yenepoya_logo.webp" class="logo-image" alt="Yenepoya Logo">
-            </div>
+            <picture class="logo logo-1">
+                <source srcset="../assets/yenepoya_logo.png" type="image/webp">
+                <img src="../assets/yenepoya_logo.png" class="logo-image" alt="Yenepoya Logo">
+            </picture>
+            <picture class="logo-2-container">
+                <span class="bg-text text-left">
+                    <div class="date-container">
+                        <div class="day">16</div>
+                        <div class="sub-date">
+                            <div class="month">FEB</div>
+                            <div class="year">2026</div>
+                        </div>
+                    </div>
+                </span>
+                <span class="bg-text text-right">NATIONAL &nbsp;  LEVEL <br>INTERCOLLEGIATE FEST</span>
+                <img src="../assets/rotate.png" class="rotating-bg" alt="Rotating Background">
+                <picture class="logo logo-2">
+                    <source srcset="../assets/yenixa_logo.png" type="image/webp">
+                    <img src="../assets/yenixa_logo.png" class="logo-image" alt="YENIXA Logo">
+                </picture>
+            </picture>
+            <br><br><br>
+            <center>
+                <h3 class="mobile-only-text">NATIONAL LEVEL <br>INTERCOLLEGIATE FEST</h3>
+            </center>
+            <h4>POWERED BY</h4>
             <div class="logo-2-container">
-                <img src="../assets/rotate.webp" class="rotating-bg" alt="Rotating Background">
-                <div class="logo logo-2">
-                    <img src="../assets/Yenixa logo.webp" class="logo-image" alt="YENIXA Logo">
-                </div>
+
+                <picture class="logo logo-2">
+                    <source srcset="../assets/sponsor/eti.png" type="image/webp">
+                    <img src="../assets/sponsor/eti.png" class="logo-image" alt="YENIXA Logo">
+                </picture>
             </div>
+
+
         </div>
     </section>
 
     <section class="content">
-        <div class="sticky-clock-wrapper">
-            <img src="../assets/clock.webp" class="scroll-clock" alt="Clock">
-        </div>
+        <picture class="sticky-clock-wrapper">
+            <source srcset="../assets/clock.png" type="image/webp">
+            <img src="../assets/clock.png" class="scroll-clock" alt="Clock">
+        </picture>
 
 
 
@@ -113,27 +141,35 @@
                     <li><strong>Participants must hold a valid college ID during registration.</strong></li>
                     <li><strong>Participants must submit a bonafide letter from their respective college.</strong></li>
                     <li><strong>The judges’ decisions will be final and binding in all aspects.</strong></li>
-                    <li><strong>To qualify for the overall championship, a team must compete in at least
+                    <li><strong>To qualify for the overall championship, a team must compete in at least 9
                             events.</strong></li>
 
-                    <p class="rules-note"><strong>Last Date for Registration: 13.02.2026</strong></p>
+                    <center>
+                        <p class="rules-note"><strong>Last Date for Registration: 13.02.2026</strong></p>
+                    </center>
             </div>
         </div>
 
         <div class="section portal-section">
+            <h2 class="section-title">Event & Registration</h2>
             <div class="portal-wrapper">
-                <a href="../assets/brochure.pdf" class="portal-btn btn-left" target="_blank">
+
+                <a href="../assets/Yenixa_2026.pdf" class="portal-btn btn-left" target="_blank">
                     <span class="btn-glow"></span>
                     <i class="fas fa-file-download"></i> BROCHURE
                 </a>
 
                 <div class="portal-core" id="timeLeapTrigger">
                     <div class="portal-image-container">
-                        <img src="../assets/time_travel.webp" alt="Portal Core" class="portal-image">
+                        <img src="../assets/time_travel.png" alt="Portal Core" class="portal-image">
                     </div>
-                    <div class="portal-status-text">EVENTS</div>
+                    <div class="portal-status-text">EVENTS <center>
+                            <h6>Click Hear</h6>
+                        </center>
+                    </div>
                 </div>
-                <a href="template/registration.html" class="portal-btn btn-right">
+
+                <a href="../template/registration.html" class="portal-btn btn-right">
                     <span class="btn-glow"></span>
                     REGISTER <i class="fas fa-user-plus"></i>
                 </a>
@@ -142,27 +178,28 @@
 
         <!-- Replace the entire contact-sponsor-container section with this -->
         <section class="section contact-sponsor-wrapper">
-            <center>
-                <h1>Contact Info</h1>
-            </center>
+            <h2 class="section-title">Contact Info</h2>
             <div class="contact-sponsor-container">
                 <div class="contact-grid">
                     <div class="contact-card">
                         <h3 class="coord-title">Faculty Coordinators</h3>
                         <div class="coord-details">
-                            <p class="coord-name">Ms. Bindiya G</p>
-                            <p class="coord-phone">+91 81479 84641</p>
                             <p class="coord-name">Ms. Lawren Maria Castelino</p>
                             <p class="coord-phone">+91 9449640880</p>
+                            <p class="coord-name">Ms. Bindiya G</p>
+                            <p class="coord-phone">+91 81479 84641</p>
                         </div>
                     </div>
 
                     <div class="contact-card">
                         <h3 class="coord-title">Student Coordinators</h3>
                         <div class="coord-details">
-                            <p class="coord-name">Mr. Fahaz Ahmad</p>
+                            <p class="coord-name">Mr. Fahaz Ahmed</p>
                             <p class="coord-phone">+91 99724 68852</p>
-
+                            <p class="coord-name">Mr. Sayed Fazil</p>
+                            <p class="coord-phone">+91 86609 21795</p>
+                            <p class="coord-name">Ms. Aysha sabaa</p>
+                            <p class="coord-phone">+91 85536 63666</p>
                         </div>
                     </div>
                 </div>
@@ -170,8 +207,57 @@
 
         </section>
 
+        <section class="section venue-section animate">
+            <center>
+                <h2 class="section-title">EVENT VENUE</h2>
+            </center>
+
+            <div class="venue-flex-container">
+                <div class="venue-info-side">
+                    <h3 class="venue-college-name">Yenepoya Institute of Arts, Science, Commerce & Management</h3>
+                    <p class="venue-location-text">Kuloor, Bangra, Kodikal, Mangaluru, Karnataka 575013</p>
 
 
+                </div>
+
+                <div class="venue-map-side">
+                    <div class="map-inner-border">
+                        <iframe <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.8172921547707!2d74.8286889!3d12.9194617!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba3515fba957beb%3A0xc746ba315d97924e!2sYenepoya%20Institute%20of%20Arts%2C%20Science%2C%20Commerce%20%26%20Management%2C%20Yiascm%20Kulur%20Campus!5e0!3m2!1sen!2sin!4v1770271424665!5m2!1sen!2sin"
+                            style="border:0; border-radius:15px;" allowfullscreen="" loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="section contact-sponsor-wrapper">
+             <h2 class="section-title">Our Time Guardians</h2>
+            <h1 class="section-heading">Gold Sponsorship</h1>
+
+            <div class="contact-sponsor-container">
+                <div class="sponsor-logo-grid">
+                    <div class="sponsor-card">
+                        <img src="../assets/sponsor/isdc.png" alt="Sponsor Name" class="sponsor-logo">
+                    </div>
+
+
+                </div>
+            </div>
+             <h1 class="section-heading">Silver Sponsorship</h1>
+
+            <div class="contact-sponsor-container">
+                <div class="sponsor-logo-grid">
+                    <div class="sponsor-card">
+                        <img src="../assets/sponsor/miles.png" alt="Sponsor Name" class="sponsor-logo">
+                    </div>
+
+
+                </div>
+            </div>
+        </section>
+
+        <!-- 
         <div class="sponsor-section">
             <h2 class="section-title">Our Time Guardians</h2>
             <div class="sponsor-slider">
@@ -188,7 +274,7 @@
                     <img src="/assets/sponsors/logo5.png" alt="Sponsor">
                 </div>
             </div>
-        </div>
+        </div> -->
 
 
 
@@ -199,33 +285,35 @@
 
     </section>
 
-   <footer class="site-footer">
-    <div class="footer-main">
-        <div class="footer-logo">
-            <img src="../assets/yenepoya_logo.webp" alt="Yenepoya Institute Logo">
+    <footer class="site-footer">
+        <div class="footer-main">
+            <div class="footer-logo">
+                <img src="../assets/yenepoya_logo.svg" alt="Yenepoya Institute Logo">
+            </div>
+            <div class="footer-text-content">
+                <p>Yenepoya (Deemed to be University) brings you a world-class educational experience in the pristine
+                    surroundings of a tranquil South Indian town. Accredited as 'A+' by NAAC and ranked 95th in the NIRF
+                    ranking of 2024, YIASCM provides quality and industry-aligned education across various disciplines.
+                </p>
+            </div>
         </div>
-        <div class="footer-text-content">
-            <p>Yenepoya (Deemed to be University) brings you a world-class educational experience in the pristine
-                surroundings of a tranquil South Indian town. Accredited as 'A+' by NAAC and ranked 95th in the NIRF
-                ranking of 2024, YIASCM provides quality and industry-aligned education across various disciplines.
-            </p>
-        </div>
-    </div>
 
-    <div class="footer-divider"></div>
+        <div class="footer-divider"></div>
 
-    <div class="footer-bottom">
-        <div class="footer-socials">
-            <a href="https://www.instagram.com/yenixa2026?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="><i class="fab fa-instagram"></i> yenixa_2026</a>
-           
-            <a href="#"><i class="fas fa-envelope"></i> yenixa@yenepoya.edu.in</a>
+        <div class="footer-bottom">
+            <div class="footer-socials">
+                <a
+                    href="https://www.instagram.com/yenixa2026?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="><i
+                        class="fab fa-instagram"></i> yenixa_2026</a>
+
+                <a href="#"><i class="fas fa-envelope"></i> yenixa@yenepoya.edu.in</a>
+            </div>
+            <div class="footer-credits">
+                <p>Designed and Developed by Team YENOVA<strong></strong></p>
+                <p class="footer-copyright">© YENIXA 2026. All rights reserved.</p>
+            </div>
         </div>
-        <div class="footer-credits">    
-            <p>Designed and Developed by Team YENOVA<strong></strong></p>
-            <p class="footer-copyright">© YENIXA 2026. All rights reserved.</p>
-        </div>
-    </div>
-</footer>
+    </footer>
 
     <script src="../js/components.js"></script>
 

@@ -1,17 +1,17 @@
  /* Fonts */
         @font-face {
             font-family: 'Font1';
-            src: url('/assets/fonts/CinzelDecorative-Bold.ttf') format('truetype');
+            src: url('../assets/fonts/CinzelDecorative-Bold.ttf') format('truetype');
         }
 
         @font-face {
             font-family: 'Font2';
-            src: url('/assets/fonts/Oxanium-VariableFont_wght.ttf') format('truetype');
+            src: url('../assets/fonts/Oxanium-VariableFont_wght.ttf') format('truetype');
         }
 
         @font-face {
             font-family: 'Font3';
-            src: url('/assets/fonts/neuropol.ttf') format('truetype');
+            src: url('../assets/fonts/neuropol.ttf') format('truetype');
         }
 
         :root {
@@ -299,7 +299,7 @@
         /* Anchor Specific Styling */
         .anchor-card {
             width: 320px;
-            min-height: 160px;
+            min-height: 70px;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -593,8 +593,8 @@
             }
 
             .event-logo-container {
-                width: 30%;
-                height: 30%;
+                width: 80%;
+                height: 80%;
             }
 
             .event-thematic {
@@ -772,8 +772,8 @@
     /* Footer Styles */
     .site-footer {
         background: linear-gradient(135deg, 
-            rgba(255, 172, 114, 0.9) 0%, 
-            rgba(5, 208, 255, 0.9) 100%
+            rgba(255, 172, 114) 0%, 
+            rgba(5, 208, 255) 100%
         );
         color: #0a0a0a;
         padding: 60px 40px 20px;

@@ -13,87 +13,114 @@ document.addEventListener('DOMContentLoaded', function () {
     document.querySelectorAll('.section').forEach(s => observer.observe(s));
     // Time Travel Portal Animation
     // Time Travel Portal Animation - Only animates image, not text
-   // Time Travel Portal Animation with Black Background
+    // Time Travel Portal Animation with Black Background
+    // Reset the portal state when the user navigates back to this page
+    window.addEventListener('pageshow', function (event) {
+        const trigger = document.getElementById('timeLeapTrigger');
+        const blackOverlay = document.getElementById('blackOverlay');
+        const leapFlash = document.getElementById('leapFlash');
 
-   
-const timeLeapTrigger = document.getElementById('timeLeapTrigger');
-const leapFlash = document.getElementById('leapFlash');
-const blackOverlay = document.getElementById('blackOverlay');
+        if (trigger) {
+            // 1. Restore the original portal visibility
+            trigger.style.opacity = '1';
+            trigger.style.pointerEvents = 'auto';
 
-if (timeLeapTrigger) {
-    timeLeapTrigger.addEventListener('click', function() {
-        // Add class to body to darken other content
-        document.body.classList.add('body-leap-active');
-        
-        // Activate black overlay
-        if (blackOverlay) {
-            blackOverlay.classList.add('active');
+            // 2. Show the text again
+            const portalText = trigger.querySelector('.portal-status-text');
+            if (portalText) portalText.style.display = 'block';
         }
-        
-        // Get the image element
-        const portalImage = this.querySelector('.portal-image');
-        
-        // Hide the text immediately
-        const portalText = this.querySelector('.portal-status-text');
-        portalText.style.display = 'none';
-        
-        // Clone only the image for animation
-        const imageClone = portalImage.cloneNode(true);
-        imageClone.classList.add('portal-image-leaping');
-        
-        // Position the cloned image
-        const rect = this.getBoundingClientRect();
-        imageClone.style.position = 'fixed';
-        imageClone.style.top = rect.top + rect.height / 2 + 'px';
-        imageClone.style.left = rect.left + rect.width / 2 + 'px';
-        imageClone.style.transform = 'translate(-50%, -50%)';
-        imageClone.style.zIndex = '9999';
-        
-        document.body.appendChild(imageClone);
-        
-        // Trigger flash effect (this will transition to black)
-        leapFlash.classList.add('flash-active');
-        
-        // Hide original portal during animation
-        this.style.opacity = '0';
-        this.style.pointerEvents = 'none';
-        
-        // Prevent any interaction during animation
-        document.body.style.pointerEvents = 'none';
-        
-        // Redirect after animation completes
-        setTimeout(() => {
-            window.location.href = 'timeline.html';
-        }, 4000);
-        
-        // Clean up after animation (in case redirect fails)
-        setTimeout(() => {
-            imageClone.remove();
-            leapFlash.classList.remove('flash-active');
-            if (blackOverlay) {
-                blackOverlay.classList.remove('active');
-            }
-            document.body.classList.remove('body-leap-active');
-            document.body.style.pointerEvents = 'auto';
-        }, 4500);
-    });
-}
 
-// Enhanced sponsor slider animation
-function initSponsorSlider() {
-    const track = document.querySelector('.sponsor-track');
-    if (!track) return;
+        // 3. Remove all animation/overlay classes
+        if (blackOverlay) blackOverlay.classList.remove('active');
+        if (leapFlash) leapFlash.classList.remove('flash-active');
+        document.body.classList.remove('body-leap-active');
+        document.body.style.pointerEvents = 'auto';
+
+        // 4. Remove any leftover cloned images from previous animations
+        const leftovers = document.querySelectorAll('.portal-image-leaping');
+        leftovers.forEach(el => el.remove());
+    });
+
     
-    // Clone the sponsor logos for seamless loop
-    const logos = track.querySelectorAll('img');
-    logos.forEach(logo => {
-        const clone = logo.cloneNode(true);
-        track.appendChild(clone);
-    });
-}
 
-// Call this after DOM is loaded
-initSponsorSlider();
+    const timeLeapTrigger = document.getElementById('timeLeapTrigger');
+    const leapFlash = document.getElementById('leapFlash');
+    const blackOverlay = document.getElementById('blackOverlay');
+
+    if (timeLeapTrigger) {
+        timeLeapTrigger.addEventListener('click', function () {
+            // Add class to body to darken other content
+            document.body.classList.add('body-leap-active');
+
+            // Activate black overlay
+            if (blackOverlay) {
+                blackOverlay.classList.add('active');
+            }
+
+            // Get the image element
+            const portalImage = this.querySelector('.portal-image');
+
+            // Hide the text immediately
+            const portalText = this.querySelector('.portal-status-text');
+            portalText.style.display = 'none';
+
+            // Clone only the image for animation
+            const imageClone = portalImage.cloneNode(true);
+            imageClone.classList.add('portal-image-leaping');
+
+            // Position the cloned image
+            const rect = this.getBoundingClientRect();
+            imageClone.style.position = 'fixed';
+            imageClone.style.top = rect.top + rect.height / 2 + 'px';
+            imageClone.style.left = rect.left + rect.width / 2 + 'px';
+            imageClone.style.transform = 'translate(-50%, -50%)';
+            imageClone.style.zIndex = '9999';
+
+            document.body.appendChild(imageClone);
+
+            // Trigger flash effect (this will transition to black)
+            leapFlash.classList.add('flash-active');
+
+            // Hide original portal during animation
+            this.style.opacity = '0';
+            this.style.pointerEvents = 'none';
+
+            // Prevent any interaction during animation
+            document.body.style.pointerEvents = 'none';
+
+            // Redirect after animation completes
+            setTimeout(() => {
+                window.location.href = 'timeline.html';
+            }, 4000);
+
+            // Clean up after animation (in case redirect fails)
+            setTimeout(() => {
+                imageClone.remove();
+                leapFlash.classList.remove('flash-active');
+                if (blackOverlay) {
+                    blackOverlay.classList.remove('active');
+                }
+                document.body.classList.remove('body-leap-active');
+                document.body.style.pointerEvents = 'auto';
+            }, 4500);
+        });
+    }
+
+    // Enhanced sponsor slider animation
+    function initSponsorSlider() {
+        const track = document.querySelector('.sponsor-track');
+        if (!track) return;
+
+        // Clone the sponsor logos for seamless loop
+        const logos = track.querySelectorAll('img');
+        logos.forEach(logo => {
+            const clone = logo.cloneNode(true);
+            track.appendChild(clone);
+        });
+    }
+
+    // Call this after DOM is loaded
+    initSponsorSlider();
     // Countdown Timer
     function updateCountdown() {
         // Set the target date (March 15, 2026)
@@ -168,7 +195,25 @@ initSponsorSlider();
             this.style.transform = 'translateY(0)';
         });
     });
+const bgVideo = document.querySelector('.bg-video');
 
+if (bgVideo) {
+    // Force the video to loop manually before the browser hits the "end"
+    bgVideo.addEventListener('timeupdate', function() {
+        // We trigger the reset 0.1 seconds before the actual end
+        const offset = 0.1; 
+        if (this.currentTime >= this.duration - offset) {
+            this.currentTime = 0;
+            this.play();
+        }
+    });
+
+    // iOS Power Mode Fix: Ensure it doesn't pause when the phone enters low power mode
+    bgVideo.play().catch(() => {
+        // Auto-play was prevented, wait for first user interaction
+        document.addEventListener('click', () => bgVideo.play(), { once: true });
+    });
+}
     // Add smooth scrolling for anchor links (if any are added later)
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {

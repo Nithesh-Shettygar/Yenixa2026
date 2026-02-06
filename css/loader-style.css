@@ -2,57 +2,200 @@
     --warp-color: #00d4ff;
     --bg: #000205;
 }
+@font-face {
+    font-family: 'Font1';
+    src: url('../assets/fonts/CinzelDecorative-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+}
 
-body {
-    margin: 0; background: var(--bg); height: 100vh;
-    overflow: hidden; font-family: 'Oxanium', sans-serif;
-    display: flex; justify-content: center; align-items: center;
+@font-face {
+    font-family: 'Font2';
+    src: url('../assets/fonts/Oxanium-VariableFont_wght.ttf') format('truetype');
+    font-weight: 300 700;
+    font-style: normal;
+}
+body,
+html {
+    margin: 0;
+    padding: 0;
+    background: var(--bg);
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Font2', sans-serif;
 }
 
 #wormhole-stage {
-    position: relative; width: 100%; height: 100%;
-    perspective: 600px; overflow: hidden;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    /* Perspective changes for mobile via JS or Media Query */
+    perspective: 800px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: radial-gradient(circle at center, #102030 0%, #000 70%);
+}
+
+.scene {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
 }
 
 .trail {
-    position: absolute; width: 2px; height: 180px;
-    left: 50%; top: 50%;
+    position: absolute;
+    width: 1.5px;
+    height: 150px;
+    /* Shorter for mobile */
     background: linear-gradient(to bottom, transparent, var(--warp-color), #fff, transparent);
-    transform-origin: center; opacity: 0;
+    left: calc(50% - 1px);
+    top: calc(50% - 75px);
 }
 
 @keyframes travel {
-    0% { transform: rotate(var(--r)) translateY(-50px) translateZ(-2000px); opacity: 0; }
-    15% { opacity: 1; }
-    85% { opacity: 1; }
-    100% { transform: rotate(var(--r)) translateY(500px) translateZ(1000px); opacity: 0; }
+    0% {
+        transform: rotate(var(--r)) translateY(-50px) translateZ(-2000px);
+        opacity: 0;
+    }
+
+    15% {
+        opacity: 1;
+    }
+
+    85% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: rotate(var(--r)) translateY(500px) translateZ(1000px);
+        opacity: 0;
+    }
 }
 
+/* UI Elements */
 .loader-container {
-    position: absolute; bottom: 15%; width: 300px; text-align: center;
-    left: 50%; transform: translateX(-50%); z-index: 200;
+    position: absolute;
+    bottom: 15%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    /* Fluid width */
+    max-width: 300px;
+    z-index: 200;
+    text-align: center;
+    transition: opacity 0.5s;
 }
 
 .progress-bar-bg {
-    width: 100%; height: 4px; background: rgba(0, 212, 255, 0.1);
-    border-radius: 10px; border: 1px solid rgba(0, 212, 255, 0.3); margin-bottom: 10px;
+    width: 100%;
+    height: 4px;
+    background: rgba(0, 212, 255, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid rgba(0, 212, 255, 0.3);
 }
 
 .progress-fill {
-    width: 0%; height: 100%; background: var(--warp-color);
-    box-shadow: 0 0 15px var(--warp-color); transition: width 0.3s ease;
+    width: 0%;
+    height: 100%;
+    background: var(--warp-color);
+    box-shadow: 0 0 20px var(--warp-color);
+    transition: width 0.4s ease-out;
+}
+
+.loading-text {
+    color: var(--warp-color);
+    font-size: 0.7rem;
+    letter-spacing: 2px;
+    margin-top: 15px;
+    text-transform: uppercase;
 }
 
 .arrival-message {
-    position: absolute; color: white; font-size: 2rem; letter-spacing: 10px;
-    opacity: 0; transition: 1s; z-index: 300; pointer-events: none;
+    position: absolute;
+    color: white;
+    font-size: 1.2rem;
+    /* Scaled for mobile */
+    letter-spacing: 5px;
+    text-align: center;
+    width: 90%;
+    opacity: 0;
+    transition: 1s;
+    font-family: 'Font1', serif;
 }
 
-.arrival-message.visible { opacity: 1; letter-spacing: 15px; }
+.arrival-message.visible {
+    opacity: 1;
+    letter-spacing: 8px;
+}
+
+.black-hole {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle at center, transparent 40%, black 100%);
+    border-radius: 50%;
+    z-index: 400;
+    opacity: 0;
+    transition: 1.2s;
+}
+
+.black-hole.active {
+    opacity: 1;
+    transform: scale(15);
+}
 
 .redirect-overlay {
-    position: fixed; inset: 0; background: black; z-index: 2000;
-    opacity: 0; pointer-events: none; transition: 1.5s;
+    position: fixed;
+    inset: 0;
+    background: black;
+    z-index: 2000;
+    opacity: 0;
+    transition: 1s;
+    pointer-events: none;
 }
 
-.redirect-overlay.active { opacity: 1; }
+.redirect-overlay.active {
+    opacity: 1;
+}
+
+.terminal-text {
+    position: absolute;
+    top: 10%;
+    color: var(--warp-color);
+    font-size: 0.6rem;
+    text-align: center;
+    opacity: 0.6;
+    line-height: 2;
+    width: 90%;
+}
+
+/* --- MOBILE RESPONSIVE OVERRIDES --- */
+@media (max-width: 768px) {
+    #wormhole-stage {
+        perspective: 400px;
+    }
+
+    /* Makes depth feel faster on small screens */
+
+    .trail {
+        height: 100px;
+        width: 1px;
+    }
+
+    .arrival-message {
+        font-size: 1.2rem;
+        letter-spacing: 4px;
+    }
+
+    .terminal-text {
+        top: 8%;
+        font-size: 0.55rem;
+    }
+}
