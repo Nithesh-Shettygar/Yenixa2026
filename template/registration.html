@@ -13,8 +13,8 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Oxanium:wght@300;400;600;700&display=swap"
         rel="stylesheet">
-    
-                <link rel="icon" type="image/png" href="../assets/yenixa_logo_black.svg">
+
+    <link rel="icon" type="image/png" href="../assets/yenixa_logo_black.svg">
 
 
     <style>
@@ -1389,7 +1389,7 @@
             <div class="counter-display">
                 <div class="counter-text">Selected Events</div>
                 <div class="counter-number" id="groupCounter">0</div>
-                <div class="counter-minimum">Select any number of events</div>
+                <div class="counter-minimum">Minimum: 2 events for Group registration</div>
             </div>
 
             <button class="submit-btn" onclick="proceedToGroupForm()" id="groupProceedBtn" disabled>
@@ -1419,17 +1419,17 @@
 
             <!-- Step Controls (for consistency with group, but simplified) -->
             <center>
-            <div class="step-controls">
-                <!-- <button class="step-btn" onclick="goBackToIndividualEvents()">
+                <div class="step-controls">
+                    <!-- <button class="step-btn" onclick="goBackToIndividualEvents()">
                     <i class="fas fa-chevron-left"></i> Back to Events
                 </button> -->
 
 
 
-                <button class="step-btn" onclick="submitIndividualRegistration()" id="individualSubmitBtn">
-                    Submit Registration <i class="fas fa-chevron-right"></i>
-                </button>
-            </div>
+                    <button class="step-btn" onclick="submitIndividualRegistration()" id="individualSubmitBtn">
+                        Submit Registration <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
             </center>
         </div>
 
@@ -1694,8 +1694,13 @@
 
         function toggleGroupEvent(id, checked) {
             checked ? selectedEvents.add(id) : selectedEvents.delete(id);
-            document.getElementById('groupCounter').textContent = selectedEvents.size;
-            document.getElementById('groupProceedBtn').disabled = selectedEvents.size === 0;
+
+            const count = selectedEvents.size;
+            document.getElementById('groupCounter').textContent = count;
+
+            // CHANGE: Requirement for Group is > 1 event
+            document.getElementById('groupProceedBtn').disabled = count <= 1;
+
             updateChampionshipWarning();
         }
 
@@ -1862,14 +1867,13 @@
         function proceedToGroupForm() {
             if (!validateCollegeDetails()) return;
 
-            if (selectedEvents.size === 0) {
-                showPopup('error', 'No Events Selected', 'Please select at least one event for team registration');
+            // CHANGE: Ensure more than 1 event is selected
+            if (selectedEvents.size <= 1) {
+                showPopup('error', 'Selection Required', 'Group registration requires at least 2 events. For single events, please use Individual registration.');
                 return;
             }
 
-            // Hide registration toggle
             document.getElementById('registrationToggle').classList.add('hidden');
-
             sortedSelectedEvents = Array.from(selectedEvents).map(id => allEvents.find(e => e.id === id));
             generateEventParticipantsForms();
             currentEventIndex = -1;
