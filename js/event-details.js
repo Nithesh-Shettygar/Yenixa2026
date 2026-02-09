@@ -3,7 +3,7 @@ const completeEventsData = {
         details: {
             eventType: "Individual Event",
             teamSize: "1",
-            rounds: "3"
+            rounds: "4"
         },
         about: "A place where time doesn't just pass, it tests you. Not to simply be a manager, but to prove yourself as a strong individual shaped by skill, determination and growth. Best Manager is more than an event. It challenges you to take a leap of faith, to step into a version of yourself you didn't even know existed. One Participant. One Best Manager. One Universe. Be at your sharpest, because you never know when a shooting star will hit your path.",
         rules: [
@@ -205,7 +205,7 @@ const completeEventsData = {
         ],
         contacts: [
 
-            { role: " Dwithika Rai (Student Coordinator)", phone: "8075934134 " },
+            { role: " Dwithika Rai (Student Coordinator)", phone: "8075931434" },
             { role: "Shrutha  (Student Coordinator)", phone: "8618586121" }
         ],
         backgroundImage: "../assets/backgrounds/narrative_bg.png"
@@ -239,7 +239,7 @@ const completeEventsData = {
         ],
         contacts: [
 
-            { role: "Dwithika Rai (Student Coordinator)", phone: "8075934134" }
+            { role: "Dwithika Rai (Student Coordinator)", phone: "8075931434" }
         ],
         backgroundImage: "../assets/backgrounds/face_painting_bg.png"
     },
