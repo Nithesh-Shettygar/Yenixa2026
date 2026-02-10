@@ -1271,6 +1271,27 @@
                 font-size: 0.8rem;
             }
         }
+
+        .sub-radio {
+            accent-color: var(--neon-blue);
+            margin-right: 8px;
+        }
+
+        .sub-options-container {
+            animation: fadeIn 0.3s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-5px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
     </style>
 </head>
 
@@ -1547,7 +1568,15 @@
             { id: 4, name: "Chrono Couture", thematic: "Face Painting & Ramp Walk", participants: "Team (2)", maxParticipants: 2 },
             { id: 5, name: "Chronopreneur", thematic: "Team Entrepreneurship", participants: "Team (2)", maxParticipants: 2 },
             { id: 6, name: "Rift in Reality", thematic: "Web Development", participants: "Team (2)", maxParticipants: 2 },
-            { id: 7, name: "Soul in Focus", thematic: "Photography Challenge", participants: "Solo", maxParticipants: 1 },
+            {
+                id: 7,
+                name: "Soul in Focus",
+                thematic: "Photography Challenge",
+                participants: "Solo",
+                maxParticipants: 1,
+                hasSubOptions: true,
+                subOptions: ["Photography", "Videography"]
+            },
             { id: 8, name: "Fireless Flavors in Time", thematic: "Cooking Without Fire", participants: "Team (3)", maxParticipants: 3 },
             { id: 9, name: "Nexus Odyssey", thematic: "Marketing", participants: "Team (2)", maxParticipants: 2 },
             { id: 10, name: "TimeShift", thematic: "Surprise Event", participants: "Team (2)", maxParticipants: 2 },
@@ -1570,6 +1599,7 @@
         document.addEventListener('DOMContentLoaded', () => {
             renderEvents();
             document.getElementById('individualSection').classList.add('active');
+
         });
 
         // Popup Management Functions
@@ -1669,7 +1699,27 @@
             individualGrid.innerHTML = ''; groupGrid.innerHTML = '';
 
             allEvents.forEach(event => {
-                const html = (fn) => `<label class="checkbox-container"><input type="checkbox" class="checkbox-input" onchange="${fn}(${event.id}, this.checked)"><span class="checkbox-custom"></span></label><div class="event-checkbox-details"><div class="event-name">${event.name}</div><div style="color:var(--neon-blue);font-size:0.8rem;">${event.thematic}</div></div>`;
+                const subOptionHtml = event.hasSubOptions ? `
+            <div id="sub-options-${event.id}" class="sub-options-container" style="display:none; margin-top:10px; padding-left:10px; border-left: 2px solid var(--neon-blue);">
+                <p style="font-size:0.8rem; margin-bottom:5px; color:var(--vintage-brown);">Select Category:</p>
+                ${event.subOptions.map(opt => `
+                    <label style="display:block; font-size:0.9rem; margin-bottom:3px; cursor:pointer;">
+                        <input type="radio" name="sub-opt-${event.id}" value="${opt}" class="sub-radio"> ${opt}
+                    </label>
+                `).join('')}
+            </div>
+        ` : '';
+
+                const html = (fn) => `
+            <label class="checkbox-container">
+                <input type="checkbox" class="checkbox-input" onchange="${fn}(${event.id}, this.checked)">
+                <span class="checkbox-custom"></span>
+            </label>
+            <div class="event-checkbox-details">
+                <div class="event-name">${event.name}</div>
+                <div style="color:var(--neon-blue);font-size:0.8rem;">${event.thematic}</div>
+                ${subOptionHtml}
+            </div>`;
 
                 const iDiv = document.createElement('div'); iDiv.className = 'event-checkbox-item'; iDiv.dataset.id = event.id;
                 iDiv.innerHTML = html('selectIndividualEvent');
@@ -1682,12 +1732,20 @@
         }
 
         function selectIndividualEvent(id, checked) {
+            // Hide all sub-options first
+            document.querySelectorAll('.sub-options-container').forEach(el => el.style.display = 'none');
+
             if (checked) {
                 individualSelectedEvent = id;
+                // Show sub-options for this event if it has them
+                const subContainer = document.getElementById(`sub-options-${id}`);
+                if (subContainer) subContainer.style.display = 'block';
+
                 document.querySelectorAll('#individualEventsGrid .checkbox-input').forEach(cb => {
                     if (parseInt(cb.closest('.event-checkbox-item').dataset.id) !== id) cb.checked = false;
                 });
             } else individualSelectedEvent = null;
+
             document.getElementById('individualProceedBtn').disabled = !individualSelectedEvent;
             document.getElementById('individualCounter').textContent = individualSelectedEvent ? 1 : 0;
         }
@@ -1695,15 +1753,32 @@
         function toggleGroupEvent(id, checked) {
             checked ? selectedEvents.add(id) : selectedEvents.delete(id);
 
+            // Show/Hide sub-options for Group Grid
+            // We use a selector that specifically targets the group grid context
+            const groupGrid = document.getElementById('groupEventsGrid');
+            const subContainer = groupGrid.querySelector(`#sub-options-${id}`);
+
+            if (subContainer) {
+                subContainer.style.display = checked ? 'block' : 'none';
+            }
+
             const count = selectedEvents.size;
             document.getElementById('groupCounter').textContent = count;
-
-            // CHANGE: Requirement for Group is > 1 event
             document.getElementById('groupProceedBtn').disabled = count <= 1;
-
             updateChampionshipWarning();
         }
-
+        function validateSubOptions(id) {
+            const event = allEvents.find(e => e.id === id);
+            if (event && event.hasSubOptions) {
+                const selected = document.querySelector(`input[name="sub-opt-${id}"]:checked`);
+                if (!selected) {
+                    showPopup('warning', 'Category Required', `Please select Photography or Videography for ${event.name}`);
+                    return false;
+                }
+                return selected.value;
+            }
+            return true;
+        }
         function updateChampionshipWarning() {
             const count = selectedEvents.size;
             const hasComp = Array.from(selectedEvents).some(id => [1, 2].includes(id)); // IDs 1 and 2 are the compulsory events
@@ -1736,6 +1811,8 @@
 
         function proceedToIndividualForm() {
             if (!validateCollegeDetails()) return;
+            const subOption = validateSubOptions(individualSelectedEvent);
+            if (!subOption) return;
             if (!individualSelectedEvent) {
                 showPopup('error', 'No Event Selected', 'Please select an event first');
                 return;
@@ -1867,10 +1944,23 @@
         function proceedToGroupForm() {
             if (!validateCollegeDetails()) return;
 
-            // CHANGE: Ensure more than 1 event is selected
             if (selectedEvents.size <= 1) {
-                showPopup('error', 'Selection Required', 'Group registration requires at least 2 events. For single events, please use Individual registration.');
+                showPopup('error', 'Selection Required', 'Group registration requires at least 2 events.');
                 return;
+            }
+
+            // New: Validate sub-options for any selected events in the Group Grid
+            for (let id of selectedEvents) {
+                const event = allEvents.find(e => e.id === id);
+                if (event.hasSubOptions) {
+                    // Specifically look for the radio inside the group grid
+                    const groupGrid = document.getElementById('groupEventsGrid');
+                    const selectedSub = groupGrid.querySelector(`input[name="sub-opt-${id}"]:checked`);
+                    if (!selectedSub) {
+                        showPopup('warning', 'Category Required', `Please select Photography or Videography for ${event.name}`);
+                        return;
+                    }
+                }
             }
 
             document.getElementById('registrationToggle').classList.add('hidden');
@@ -1956,10 +2046,16 @@
             const btn = document.getElementById('individualSubmitBtn');
             const event = allEvents.find(e => e.id === individualSelectedEvent);
 
+            // Get the selected sub-option value
+            let finalEventName = event.name;
+            if (event.hasSubOptions) {
+                const subOpt = document.querySelector(`input[name="sub-opt-${event.id}"]:checked`).value;
+                finalEventName = `${event.name} (${subOpt})`;
+            }
+
             btn.disabled = true;
             btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
 
-            // Collect participant data
             const participants = [];
             const nameInputs = document.querySelectorAll('#individualParticipantsContainer .participant-name');
             const emailInputs = document.querySelectorAll('#individualParticipantsContainer .participant-email');
@@ -1971,7 +2067,7 @@
                     email: emailInputs[i].value.trim(),
                     phone: phoneInputs[i].value.trim(),
                     isLead: i === 0,
-                    eventName: event.name  // Add event name to each participant
+                    eventName: finalEventName // Updated to include sub-option
                 });
             }
 
@@ -1980,10 +2076,12 @@
                 collegeName: document.getElementById('collegeName').value.trim(),
                 type: 'individual',
                 eventId: individualSelectedEvent,
-                eventName: event.name,  // Keep event name at top level too
+                eventName: finalEventName, // Updated for top level
                 participants: participants,
                 registrationDate: new Date().toISOString()
             };
+
+            // ... rest of your fetch code remains the same
 
             console.log("Sending registration data:", payload);
 
@@ -2114,7 +2212,6 @@
 
             return true;
         }
-
         async function submitGroupRegistration() {
             if (!validateGroupForm()) return;
 
@@ -2124,7 +2221,6 @@
 
             const list = [];
 
-            // 1. Get the Main Team Leader Details
             const mainLead = {
                 eventName: "General Registration",
                 name: document.getElementById('teamLeaderName').value.trim(),
@@ -2134,8 +2230,16 @@
             };
             list.push(mainLead);
 
-            // 2. Loop through all event participants
             sortedSelectedEvents.forEach(event => {
+                // Determine the event name with sub-option if applicable
+                let finalEventName = event.name;
+                if (event.hasSubOptions) {
+                    // Find the radio button specifically inside the group grid
+                    const groupGrid = document.getElementById('groupEventsGrid');
+                    const subOpt = groupGrid.querySelector(`input[name="sub-opt-${event.id}"]:checked`).value;
+                    finalEventName = `${event.name} (${subOpt})`;
+                }
+
                 const sec = document.getElementById(`event-section-${event.id}`);
                 const ns = sec.querySelectorAll('.participant-name');
                 const es = sec.querySelectorAll('.participant-email');
@@ -2143,7 +2247,7 @@
 
                 ns.forEach((n, i) => {
                     list.push({
-                        eventName: event.name,
+                        eventName: finalEventName, // Updated to include sub-option
                         name: n.value.trim(),
                         email: es[i].value.trim(),
                         phone: ps[i].value.trim(),
@@ -2152,6 +2256,7 @@
                 });
             });
 
+            // ... rest of your payload and fetch code remains the same
             const payload = {
                 registrationId: generateRegistrationId(),
                 collegeName: document.getElementById('collegeName').value.trim(),

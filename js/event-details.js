@@ -368,17 +368,16 @@ const completeEventsData = {
             teamSize: "1",
             rounds: "3"
         },
-        about: "\"Every frame carries a soul.\" This mobile-only photography and videography challenge captures the essence of college life through three creative rounds: Object Photography, Emotions, and Cinematic Videography. Participants showcase their lens skills to uncover stories hidden in everyday objects and raw emotions.",
+        about: "\"Every frame carries a soul.\"This mobile-only photography and videography challenge captures the essence of college life through three creative rounds: Object Photography, Emotions,and Cinematic Videography. Participants showcase their lens skills to uncover stories hidden in everyday objects and raw emotions.",
         rules: [
-            "No Gadgets",
-            "No DSLR",
-            "No Laptop",
-            "Only Mobile Photography & Videography Allowed",
-            "Color Grading Allowed",
-            "Multiple Apps Allowed",
-            "No Pre-Recorded Clips",
-            "No Online / Internet-Sourced Footage",
-            "All video clips must be shot during the event or within campus"
+            "Any gadget allowed (mobile / DSLR /mirrorless / gimbal etc.)",
+            "Editing and color grading allowed",
+            "Multiple apps/software allowed",
+            "No pre-recorded clips",
+            " No online/internet-sourced footage",
+            "No stock content or external mediaAll content must be shot during      Yenixa Fest within campus",
+            "Violation leads to disqualification.",
+           
         ],
         contacts: [
             { role: "Dr. Sagar Shetty(Faculty Coordinator)", phone: "+91 96111 90031" },
