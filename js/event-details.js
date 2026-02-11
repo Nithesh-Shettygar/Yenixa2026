@@ -171,15 +171,14 @@ const completeEventsData = {
             teamSize: "2",
             rounds: "2"
         },
-        about: "Prepare for ultimate digital dominance in our Esports Arena, featuring high-octane showdowns across both Mobile and PC platforms. Whether you're dominating the battlefield in BGMI or outmaneuvering opponents in Valorant and FC 24, this is your chance to showcase elite gaming skills, tactical precision,",
+        about: "Prepare for ultimate digital dominance in our Esports Arena, featuring high-octane showdowns exclusively on mobile platforms. Dominate the battlefield in our BGMI 2v2 tournament, where you'll have the chance to showcase elite gaming skills, tactical precision, and mobile mastery.",
         rules: [
-            "Players must register for their specific game category (Mobile or PC)",
-            "Unsportsmanlike behavior, toxicity, or trash-talking that exceeds friendly banter will result in immediate disqualification.",
-            "Teams must report to their assigned classroom 15 minutes before their match start time. Late arrivals (10+ mins) will result in a walkover for the opponent.",
-            "Participants must bring their own mobile devices, chargers, and power banks.",
-            "Players must use their personal accounts. Ensure your game is updated to the latest version before the event.",
-            "While campus Wi-Fi may be available, players are encouraged to have their own stable mobile data as a backup.",
-            "Games: * BGMI: 4v4 (TDM) or Battle Royale (format to be announced) *Clash Royale: 1v1 standard friendly battle.* Chess: 1v1 on a standard mobile chess app.",
+            "High-octane e-sports showdown on Mobile",
+            "Players bring own devices / accounts.",
+            "Standard BGMI (2v2) mode.",
+            "Fair play & no cheating.",
+            "Tournament brackets & match rules will be shared before start.",
+           
         ],
         contacts: [
             { role: "Aswin S(Student Coordinator)", phone: "98435 42635" },
