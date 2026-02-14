@@ -2019,3 +2019,24 @@ body {
             text-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
              font-family: 'Font1', sans-serif;
         }
+
+
+        /* Mobile override for Silver Sponsorship logos */
+@media (max-width: 768px) {
+    .sponsor-logo-grid {
+        flex-direction: column; /* Stacks items vertically */
+        align-items: center;    /* Centers them horizontally */
+        gap: 20px;              /* Adds space between the stacked logos */
+    }
+
+    .sponsor-card {
+        width: 100%;            /* Allows cards to take full width */
+        height: auto;           /* Adjusts height based on content */
+        margin-bottom: 10px;    /* Extra breathing room */
+    }
+
+    .sponsor-logo {
+        max-width: 80%;         /* Ensures logos don't hit the screen edges */
+        height: auto;
+    }
+}
